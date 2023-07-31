@@ -9,17 +9,69 @@ import UIKit
 
 protocol ScreensFactory {
     func makeStartPage() -> StartPageVC
+    func makeBetsPage() -> BetsPageVC
+    func makeGuessOnly() -> GuessOnlyVC
+    func makeWithComputer() -> WithComputerVC
+    func makePlayOnline() -> PlayOnlineVC
 }
 
 class DefaultScreensFactory: ScreensFactory {
-    
+  
     public static let shared: ScreensFactory  = DefaultScreensFactory()
     
     private init() {}
     
     func makeStartPage() -> StartPageVC {
-        let presenter = StartPagePresenter()
-        return StartPageVC()
+        var output = StartPageOutput()
+        
+        output.onMoveToBetsPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeBetsPage()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = StartPagePresenter(output: output)
+        return StartPageVC(presenter: presenter)
+    }
+    
+    func makeBetsPage() -> BetsPageVC {
+        var output = BetsPageOutput()
+        
+        output.onMoveToGuessOnly = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeGuessOnly()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        output.onMoveToWithComputer = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeWithComputer()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        output.onMoveToPlayOnline = { [weak self] in
+            guard let self else { return }
+            let vc = self.makePlayOnline()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = BetsPagePresenter(output: output)
+        return BetsPageVC(presenter: presenter)
+    }
+    
+    func makeGuessOnly() -> GuessOnlyVC {
+        let presenter = GuessOnlyPresenter()
+        return GuessOnlyVC()
+    }
+    
+    func makeWithComputer() -> WithComputerVC {
+        let presenter = WithComputerPresenter()
+        return WithComputerVC()
+    }
+    
+    func makePlayOnline() -> PlayOnlineVC {
+        let presenter = PlayOnlinePresenter()
+        return PlayOnlineVC()
     }
 }
 

@@ -14,38 +14,38 @@ final class StartPageVC: BaseVC {
 
     var game = GameConfigs()
     var gameStyle: GameConfigs.GameStyle?
-    
-    static var gameStyleIndex = 0
+    var variantButtons: [VariantButton] = []
     var StartButtonEnabled = false
+    static var gameStyleIndex = 0
 
     // MARK: - Subviews
    
     // Game style
     let profilImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "profileImage")
-        imageView.sizeToFit()
+        let v = UIImageView()
+        v.image = UIImage(named: "profileImage")
+        v.sizeToFit()
         
-        return imageView
+        return v
     }()
     
     let finiksCountLabel: UILabel = {
-        let label = UILabel()
-        label.text = "1400 Finics"
-        label.textAlignment = .center
-        label.layer.cornerRadius = 12
+        let v = UILabel()
+        v.text = "1400 Finics"
+        v.textAlignment = .center
+        v.layer.cornerRadius = 12
         
-        return label
+        return v
     }()
     
     let gameStyleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 30, weight: .heavy)
-        label.textAlignment = .center
-        label.text = "Game style"
+        let v = UILabel()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.font = .systemFont(ofSize: 30, weight: .heavy)
+        v.textAlignment = .center
+        v.text = "Game style"
         
-        return label
+        return v
     }()
     
     lazy var GameStyleStackView: UIStackView = {
@@ -101,12 +101,28 @@ final class StartPageVC: BaseVC {
         return v
     }()
     
+    private let presenter: StartPagePresenterProtocol
+    var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Init
+
+    init(presenter: StartPagePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        variantButtons = [GuessOnlyButton, WithComputerButton, PlayOnlineButton]
         bind()
     }
     
@@ -117,7 +133,13 @@ final class StartPageVC: BaseVC {
     // MARK: - Bind
 
     public override func bind() {
-
+        StartButton
+            .publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.presenter.moveToBetsPageScreen()
+            }
+            .store(in: &cancellables)
     }
 
     // MARK: - Setup
@@ -172,7 +194,8 @@ final class StartPageVC: BaseVC {
     
     private func getStartConfigs() {
         gameStyleLabel.text = "Game style"
-        StartButton.isEnabled = false
+        makeInactive(buttons: variantButtons)
+        StartButton.buttonState = .inactive
     }
     
     private func isStartButtonEnable() {
@@ -193,11 +216,7 @@ final class StartPageVC: BaseVC {
     
     @objc func didTapGameConfigsButton(_ sender: UIButton) {
                
-        makeInactive(buttons: [
-            GuessOnlyButton,
-            WithComputerButton,
-            PlayOnlineButton
-        ])
+        makeInactive(buttons: variantButtons)
         
         switch sender.tag {
         case 1:

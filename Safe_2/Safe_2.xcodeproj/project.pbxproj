@@ -26,6 +26,15 @@
 		01A790382A7598FA009E89AE /* VariantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790372A7598FA009E89AE /* VariantButton.swift */; };
 		01A7903F2A759B80009E89AE /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7903E2A759B80009E89AE /* AppColors.swift */; };
 		01A790412A761C37009E89AE /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790402A761C37009E89AE /* SubmitButton.swift */; };
+		01A790452A76866B009E89AE /* BetsPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790442A76866B009E89AE /* BetsPageVC.swift */; };
+		01A790472A7686A0009E89AE /* BetsPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790462A7686A0009E89AE /* BetsPagePresenter.swift */; };
+		01A790492A768935009E89AE /* UIControl+interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790482A768935009E89AE /* UIControl+interaction.swift */; };
+		01A7904C2A76E997009E89AE /* WithComputerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7904B2A76E997009E89AE /* WithComputerVC.swift */; };
+		01A7904E2A76E9AF009E89AE /* WithComputerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */; };
+		01A790512A76EB43009E89AE /* GuessOnlyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790502A76EB43009E89AE /* GuessOnlyVC.swift */; };
+		01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */; };
+		01A790562A76EBC1009E89AE /* PlayOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */; };
+		01A790582A76EBCF009E89AE /* PlayOnlinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */; };
 		01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E32A73CE13007EC591 /* AppDelegate.swift */; };
 		01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E52A73CE13007EC591 /* SceneDelegate.swift */; };
 		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
@@ -51,6 +60,15 @@
 		01A790372A7598FA009E89AE /* VariantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantButton.swift; sourceTree = "<group>"; };
 		01A7903E2A759B80009E89AE /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		01A790402A761C37009E89AE /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
+		01A790442A76866B009E89AE /* BetsPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsPageVC.swift; sourceTree = "<group>"; };
+		01A790462A7686A0009E89AE /* BetsPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsPagePresenter.swift; sourceTree = "<group>"; };
+		01A790482A768935009E89AE /* UIControl+interaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+interaction.swift"; sourceTree = "<group>"; };
+		01A7904B2A76E997009E89AE /* WithComputerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithComputerVC.swift; sourceTree = "<group>"; };
+		01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithComputerPresenter.swift; sourceTree = "<group>"; };
+		01A790502A76EB43009E89AE /* GuessOnlyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessOnlyVC.swift; sourceTree = "<group>"; };
+		01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessOnlyPresenter.swift; sourceTree = "<group>"; };
+		01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlineVC.swift; sourceTree = "<group>"; };
+		01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlinePresenter.swift; sourceTree = "<group>"; };
 		01B337E02A73CE13007EC591 /* Safe_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B337E32A73CE13007EC591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B337E52A73CE13007EC591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +151,10 @@
 			children = (
 				01A7901D2A756077009E89AE /* DefaultScreensFactory.swift */,
 				01A7901F2A7560B2009E89AE /* StartPage */,
+				01A790432A76864B009E89AE /* BetsPage */,
+				01A7904F2A76EB27009E89AE /* GuessOnly */,
+				01A7904A2A76E967009E89AE /* WithComputer */,
+				01A790542A76EB9F009E89AE /* PlayOnline */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -171,6 +193,7 @@
 				01A790302A756BA4009E89AE /* UIView+addSubviews.swift */,
 				01A790322A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift */,
 				01A790342A756D3C009E89AE /* prepareForAutolayout.swift */,
+				01A790482A768935009E89AE /* UIControl+interaction.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -192,6 +215,42 @@
 				01A790372A7598FA009E89AE /* VariantButton.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		01A790432A76864B009E89AE /* BetsPage */ = {
+			isa = PBXGroup;
+			children = (
+				01A790462A7686A0009E89AE /* BetsPagePresenter.swift */,
+				01A790442A76866B009E89AE /* BetsPageVC.swift */,
+			);
+			path = BetsPage;
+			sourceTree = "<group>";
+		};
+		01A7904A2A76E967009E89AE /* WithComputer */ = {
+			isa = PBXGroup;
+			children = (
+				01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */,
+				01A7904B2A76E997009E89AE /* WithComputerVC.swift */,
+			);
+			path = WithComputer;
+			sourceTree = "<group>";
+		};
+		01A7904F2A76EB27009E89AE /* GuessOnly */ = {
+			isa = PBXGroup;
+			children = (
+				01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */,
+				01A790502A76EB43009E89AE /* GuessOnlyVC.swift */,
+			);
+			path = GuessOnly;
+			sourceTree = "<group>";
+		};
+		01A790542A76EB9F009E89AE /* PlayOnline */ = {
+			isa = PBXGroup;
+			children = (
+				01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */,
+				01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */,
+			);
+			path = PlayOnline;
 			sourceTree = "<group>";
 		};
 		01B337D72A73CE13007EC591 = {
@@ -297,12 +356,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A790452A76866B009E89AE /* BetsPageVC.swift in Sources */,
+				01A790562A76EBC1009E89AE /* PlayOnlineVC.swift in Sources */,
 				01A790312A756BA4009E89AE /* UIView+addSubviews.swift in Sources */,
 				01A790192A756039009E89AE /* Presentable.swift in Sources */,
 				01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */,
 				01A790162A756012009E89AE /* DefaultRouter.swift in Sources */,
 				01A790212A7560C7009E89AE /* StartPagePresenter.swift in Sources */,
 				01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */,
+				01A790472A7686A0009E89AE /* BetsPagePresenter.swift in Sources */,
+				01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */,
+				01A790512A76EB43009E89AE /* GuessOnlyVC.swift in Sources */,
 				01A790102A755FBA009E89AE /* Dependencies.swift in Sources */,
 				01A7902C2A75691C009E89AE /* UIView+pin.swift in Sources */,
 				01A7901E2A756077009E89AE /* DefaultScreensFactory.swift in Sources */,
@@ -314,9 +378,13 @@
 				01A790232A7560D7009E89AE /* StartPageVC.swift in Sources */,
 				01A7900B2A75426E009E89AE /* BaseVC.swift in Sources */,
 				01A7901B2A75604C009E89AE /* Routable.swift in Sources */,
+				01A7904C2A76E997009E89AE /* WithComputerVC.swift in Sources */,
+				01A7904E2A76E9AF009E89AE /* WithComputerPresenter.swift in Sources */,
 				01A790352A756D3C009E89AE /* prepareForAutolayout.swift in Sources */,
+				01A790582A76EBCF009E89AE /* PlayOnlinePresenter.swift in Sources */,
 				01A790132A755FE0009E89AE /* KeychainService.swift in Sources */,
 				01A790332A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift in Sources */,
+				01A790492A768935009E89AE /* UIControl+interaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

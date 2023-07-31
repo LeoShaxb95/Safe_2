@@ -7,10 +7,26 @@
 
 import Foundation
 
-protocol StartPagePresenterProtocol {}
+protocol StartPagePresenterProtocol {
+    func moveToBetsPageScreen()
+}
 
-struct StartPageOutput {}
+struct StartPageOutput {
+    var onMoveToBetsPage: (() -> Void)!
+}
 
-final class StartPagePresenter {}
+final class StartPagePresenter {
+    private let output: StartPageOutput
+    
+    // MARK: - Init
+    
+    init(output: StartPageOutput) {
+        self.output = output
+    }
+}
 
-extension StartPagePresenter: StartPagePresenterProtocol {}
+extension StartPagePresenter: StartPagePresenterProtocol {
+    func moveToBetsPageScreen() {
+        output.onMoveToBetsPage()
+    }
+}
