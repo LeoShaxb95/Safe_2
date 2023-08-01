@@ -191,6 +191,21 @@ final class WithComputerVC: BaseVC {
         return v
     }()
     
+    private let presenter: WithComputerPresenterProtocol
+    var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Init
+
+    init(presenter: WithComputerPresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

@@ -122,7 +122,9 @@ final class StartPageVC: BaseVC {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        variantButtons = [GuessOnlyButton, WithComputerButton, PlayOnlineButton]
+        navigationItem.hidesBackButton = true
+
+        setupVariantButtons()
         bind()
     }
     
@@ -188,6 +190,10 @@ final class StartPageVC: BaseVC {
                 equalTo: view.centerYAnchor)
         ])
         
+    }
+    
+    private func setupVariantButtons() {
+        variantButtons = [GuessOnlyButton, WithComputerButton, PlayOnlineButton]
     }
     
     // MARK: - other funcs

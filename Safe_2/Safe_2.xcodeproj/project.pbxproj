@@ -35,6 +35,8 @@
 		01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */; };
 		01A790562A76EBC1009E89AE /* PlayOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */; };
 		01A790582A76EBCF009E89AE /* PlayOnlinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */; };
+		01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905A2A78B501009E89AE /* AlertButton.swift */; };
+		01A7905D2A78B8D9009E89AE /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905C2A78B8D9009E89AE /* NumberButton.swift */; };
 		01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E32A73CE13007EC591 /* AppDelegate.swift */; };
 		01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E52A73CE13007EC591 /* SceneDelegate.swift */; };
 		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
@@ -69,6 +71,8 @@
 		01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessOnlyPresenter.swift; sourceTree = "<group>"; };
 		01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlineVC.swift; sourceTree = "<group>"; };
 		01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlinePresenter.swift; sourceTree = "<group>"; };
+		01A7905A2A78B501009E89AE /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
+		01A7905C2A78B8D9009E89AE /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
 		01B337E02A73CE13007EC591 /* Safe_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B337E32A73CE13007EC591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B337E52A73CE13007EC591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		01A7904F2A76EB27009E89AE /* GuessOnly */ = {
 			isa = PBXGroup;
 			children = (
+				01A790592A78B4E8009E89AE /* View */,
 				01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */,
 				01A790502A76EB43009E89AE /* GuessOnlyVC.swift */,
 			);
@@ -251,6 +256,15 @@
 				01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */,
 			);
 			path = PlayOnline;
+			sourceTree = "<group>";
+		};
+		01A790592A78B4E8009E89AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A7905A2A78B501009E89AE /* AlertButton.swift */,
+				01A7905C2A78B8D9009E89AE /* NumberButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		01B337D72A73CE13007EC591 = {
@@ -370,6 +384,7 @@
 				01A790102A755FBA009E89AE /* Dependencies.swift in Sources */,
 				01A7902C2A75691C009E89AE /* UIView+pin.swift in Sources */,
 				01A7901E2A756077009E89AE /* DefaultScreensFactory.swift in Sources */,
+				01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */,
 				01A790412A761C37009E89AE /* SubmitButton.swift in Sources */,
 				01A790382A7598FA009E89AE /* VariantButton.swift in Sources */,
 				01A7902F2A7569C5009E89AE /* UIView+sizeConstraints.swift in Sources */,
@@ -385,6 +400,7 @@
 				01A790132A755FE0009E89AE /* KeychainService.swift in Sources */,
 				01A790332A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift in Sources */,
 				01A790492A768935009E89AE /* UIControl+interaction.swift in Sources */,
+				01A7905D2A78B8D9009E89AE /* NumberButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

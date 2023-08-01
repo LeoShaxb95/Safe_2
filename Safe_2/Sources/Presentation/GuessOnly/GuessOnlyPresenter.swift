@@ -5,10 +5,26 @@
 //  Created by Levon Shaxbazyan on 30.07.23.
 //
 
-protocol GuessOnlyPresenterProtocol {}
+protocol GuessOnlyPresenterProtocol {
+    func moveToStartPageScreen()
+}
 
-struct GuessOnlyOutput {}
+struct GuessOnlyOutput {
+    var onMoveToStartPage: (() -> Void)!
+}
 
-final class GuessOnlyPresenter {}
+final class GuessOnlyPresenter {
+    private let output: GuessOnlyOutput
+    
+    //MARK: - Init
+    
+    init(output: GuessOnlyOutput) {
+        self.output = output
+    }
+}
 
-extension GuessOnlyPresenter: GuessOnlyPresenterProtocol {}
+extension GuessOnlyPresenter: GuessOnlyPresenterProtocol {
+    func moveToStartPageScreen() {
+        output.onMoveToStartPage()
+    }
+}

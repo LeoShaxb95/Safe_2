@@ -60,18 +60,26 @@ class DefaultScreensFactory: ScreensFactory {
     }
     
     func makeGuessOnly() -> GuessOnlyVC {
-        let presenter = GuessOnlyPresenter()
-        return GuessOnlyVC()
+        var output = GuessOnlyOutput()
+        
+        output.onMoveToStartPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeStartPage()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = GuessOnlyPresenter(output: output)
+        return GuessOnlyVC(presenter: presenter)
     }
     
     func makeWithComputer() -> WithComputerVC {
         let presenter = WithComputerPresenter()
-        return WithComputerVC()
+        return WithComputerVC(presenter: presenter)
     }
     
     func makePlayOnline() -> PlayOnlineVC {
         let presenter = PlayOnlinePresenter()
-        return PlayOnlineVC()
+        return PlayOnlineVC(presenter: presenter)
     }
 }
 

@@ -192,6 +192,21 @@ final class PlayOnlineVC: BaseVC {
         return v
     }()
     
+    private let presenter: PlayOnlinePresenterProtocol
+    var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Init
+
+    init(presenter: PlayOnlinePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
