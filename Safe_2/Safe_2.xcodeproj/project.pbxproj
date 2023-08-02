@@ -37,6 +37,10 @@
 		01A790582A76EBCF009E89AE /* PlayOnlinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */; };
 		01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905A2A78B501009E89AE /* AlertButton.swift */; };
 		01A7905D2A78B8D9009E89AE /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905C2A78B8D9009E89AE /* NumberButton.swift */; };
+		01A790602A7961BA009E89AE /* CreatePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */; };
+		01A790622A7961CA009E89AE /* CreatePasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */; };
+		01A790652A799591009E89AE /* PasswordNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790642A799591009E89AE /* PasswordNumberButton.swift */; };
+		01A790682A7A650D009E89AE /* UIButton+flash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790672A7A650D009E89AE /* UIButton+flash.swift */; };
 		01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E32A73CE13007EC591 /* AppDelegate.swift */; };
 		01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E52A73CE13007EC591 /* SceneDelegate.swift */; };
 		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
@@ -73,6 +77,10 @@
 		01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlinePresenter.swift; sourceTree = "<group>"; };
 		01A7905A2A78B501009E89AE /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
 		01A7905C2A78B8D9009E89AE /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
+		01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordVC.swift; sourceTree = "<group>"; };
+		01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordPresenter.swift; sourceTree = "<group>"; };
+		01A790642A799591009E89AE /* PasswordNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordNumberButton.swift; sourceTree = "<group>"; };
+		01A790672A7A650D009E89AE /* UIButton+flash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+flash.swift"; sourceTree = "<group>"; };
 		01B337E02A73CE13007EC591 /* Safe_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B337E32A73CE13007EC591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B337E52A73CE13007EC591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				01A7901D2A756077009E89AE /* DefaultScreensFactory.swift */,
+				01A790692A7A9425009E89AE /* Common */,
 				01A7901F2A7560B2009E89AE /* StartPage */,
 				01A790432A76864B009E89AE /* BetsPage */,
 				01A7904F2A76EB27009E89AE /* GuessOnly */,
@@ -184,6 +193,7 @@
 		01A7902A2A7568FE009E89AE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				01A790662A7A64E6009E89AE /* UIControl */,
 				01A7902D2A7569A5009E89AE /* UIView */,
 			);
 			path = Extensions;
@@ -233,6 +243,7 @@
 		01A7904A2A76E967009E89AE /* WithComputer */ = {
 			isa = PBXGroup;
 			children = (
+				01A7905E2A79617D009E89AE /* CreatePassword */,
 				01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */,
 				01A7904B2A76E997009E89AE /* WithComputerVC.swift */,
 			);
@@ -242,7 +253,6 @@
 		01A7904F2A76EB27009E89AE /* GuessOnly */ = {
 			isa = PBXGroup;
 			children = (
-				01A790592A78B4E8009E89AE /* View */,
 				01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */,
 				01A790502A76EB43009E89AE /* GuessOnlyVC.swift */,
 			);
@@ -258,7 +268,41 @@
 			path = PlayOnline;
 			sourceTree = "<group>";
 		};
-		01A790592A78B4E8009E89AE /* View */ = {
+		01A7905E2A79617D009E89AE /* CreatePassword */ = {
+			isa = PBXGroup;
+			children = (
+				01A790632A799567009E89AE /* View */,
+				01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */,
+				01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */,
+			);
+			path = CreatePassword;
+			sourceTree = "<group>";
+		};
+		01A790632A799567009E89AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A790642A799591009E89AE /* PasswordNumberButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01A790662A7A64E6009E89AE /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				01A790672A7A650D009E89AE /* UIButton+flash.swift */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
+		01A790692A7A9425009E89AE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				01A7906A2A7A942F009E89AE /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		01A7906A2A7A942F009E89AE /* View */ = {
 			isa = PBXGroup;
 			children = (
 				01A7905A2A78B501009E89AE /* AlertButton.swift */,
@@ -376,10 +420,13 @@
 				01A790192A756039009E89AE /* Presentable.swift in Sources */,
 				01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */,
 				01A790162A756012009E89AE /* DefaultRouter.swift in Sources */,
+				01A790622A7961CA009E89AE /* CreatePasswordPresenter.swift in Sources */,
 				01A790212A7560C7009E89AE /* StartPagePresenter.swift in Sources */,
 				01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */,
+				01A790652A799591009E89AE /* PasswordNumberButton.swift in Sources */,
 				01A790472A7686A0009E89AE /* BetsPagePresenter.swift in Sources */,
 				01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */,
+				01A790682A7A650D009E89AE /* UIButton+flash.swift in Sources */,
 				01A790512A76EB43009E89AE /* GuessOnlyVC.swift in Sources */,
 				01A790102A755FBA009E89AE /* Dependencies.swift in Sources */,
 				01A7902C2A75691C009E89AE /* UIView+pin.swift in Sources */,
@@ -387,6 +434,7 @@
 				01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */,
 				01A790412A761C37009E89AE /* SubmitButton.swift in Sources */,
 				01A790382A7598FA009E89AE /* VariantButton.swift in Sources */,
+				01A790602A7961BA009E89AE /* CreatePasswordVC.swift in Sources */,
 				01A7902F2A7569C5009E89AE /* UIView+sizeConstraints.swift in Sources */,
 				01A790292A7564D1009E89AE /* StartPageModels.swift in Sources */,
 				01A7903F2A759B80009E89AE /* AppColors.swift in Sources */,

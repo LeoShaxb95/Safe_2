@@ -373,16 +373,11 @@ final class BetsPageVC: BaseVC {
         case 1:
             self.presenter.moveToGuessOnlyScreen()
         case 2:
-            self.presenter.moveToWithComputerScreen()
+            self.presenter.moveToCreatePasswordScreen()
         case 3:
             self.presenter.moveToPlayOnlineScreen()
         default:
             break
         }
     }
-    
 }
-
-
-
-

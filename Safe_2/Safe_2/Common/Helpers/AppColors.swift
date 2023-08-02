@@ -77,4 +77,13 @@ public struct AppColors {
         alpha: 1
     )
     
+    // CreatePassword
+    
+    static var passwordNumberButtonColor = UIColor(
+        red: 142/255,
+        green: 142/255,
+        blue: 147/255,
+        alpha: 1
+    )
+    
 }

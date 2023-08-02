@@ -7,10 +7,26 @@
 
 import Foundation
 
-protocol WithComputerPresenterProtocol {}
+protocol WithComputerPresenterProtocol {
+    func moveToStartPageScreen()
+}
 
-struct WithComputerOutput {}
+struct WithComputerOutput {
+    var onMoveToStartPage: (() -> Void)!
+}
 
-final class WithComputerPresenter {}
+final class WithComputerPresenter {
+    private let output: WithComputerOutput
+    
+    //MARK: - Init
+    
+    init(output: WithComputerOutput) {
+        self.output = output
+    }
+}
 
-extension WithComputerPresenter: WithComputerPresenterProtocol {}
+extension WithComputerPresenter: WithComputerPresenterProtocol {
+    func moveToStartPageScreen() {
+        output.onMoveToStartPage()
+    }
+}
