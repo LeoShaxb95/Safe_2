@@ -215,124 +215,8 @@ final class WithComputerVC: BaseVC {
     
     //Numbers Stack View
     
-    lazy var numbersStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            number0Button,
-            number1Button,
-            number2Button,
-            number3Button,
-            number4Button,
-            number5Button,
-            number6Button,
-            number7Button,
-            number8Button,
-            number9Button
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.spacing = 5
-        
-        return stackView
-    }()
-    
-    var number0Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 0
-        v.setImage(UIImage(systemName: "0.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number1Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 1
-        v.setImage(UIImage(systemName: "1.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number2Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 2
-        v.setImage(UIImage(systemName: "2.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number3Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 3
-        v.setImage(UIImage(systemName: "3.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number4Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 4
-        v.setImage(UIImage(systemName: "4.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number5Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 5
-        v.setImage(UIImage(systemName: "5.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number6Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 6
-        v.setImage(UIImage(systemName: "6.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number7Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 7
-        v.setImage(UIImage(systemName: "7.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number8Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 8
-        v.setImage(UIImage(systemName: "8.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
-        
-        return v
-    }()
-    
-    var number9Button: NumberButton = {
-        let v = NumberButton()
-        v.tag = 9
-        v.setImage(UIImage(systemName: "9.circle"), for: .normal)
-        v.addTarget(self, action: #selector(numberButtonsPressed),
-                    for: .touchUpInside)
+    lazy var numbersStackView: NumbersStackView = {
+        let v = NumbersStackView()
         
         return v
     }()
@@ -494,7 +378,7 @@ final class WithComputerVC: BaseVC {
         homeButton
             .publisher(for: .touchUpInside)
             .sink{ [weak self] _ in
-                self?.presenter.moveToStartPageScreen()
+                self?.alertMessageHome()
             }
             .store(in: &cancellables)
         
@@ -703,10 +587,6 @@ final class WithComputerVC: BaseVC {
         
     }
     
-    @objc func didTapHomeButton() {
-        alertMessageHome()
-    }
-    
     func backToStartPage() {
         getStartPosition()
         self.dismiss(animated: false, completion: nil)
@@ -735,7 +615,7 @@ final class WithComputerVC: BaseVC {
         numberIndex = 0
         view.backgroundColor = .systemGray5
         errorLabel.backgroundColor = .systemGray5
-        unColoringNumberButtons()
+        numbersStackView.unColoringNumberButtons()
         errorLabel.text = " "
         passwordLabel.text = "____"
         pickerViewStartPoint()
@@ -767,44 +647,19 @@ final class WithComputerVC: BaseVC {
     }
     
     func alertMessageHome() {
-        
-        let alert = UIAlertController(title: "Confirm exit",
-                                      message: "Are You sure You want to exit?\n" +
-                                      "All changes you made will be lost",
-                                      preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes",
-                                      style: .default,
-                                      handler: { [weak self] _ in
-            self?.backToStartPage()
-        }))
-        
-        
-        alert.addAction(UIAlertAction(title: "No",
-                                      style: .cancel,
-                                      handler: nil))
-        
-        present(alert, animated: true)
+        CustomAlertHome.showAlert(
+            on: self, actionTitle: "Yes",
+            actionStyle: .default) { [weak self] _ in
+            self?.presenter.moveToStartPageScreen()
+        }
     }
     
     func alertMessageReplay() {
-        
-        let alert = UIAlertController(title: "Confirm reload",
-                                      message: "Are You sure You want to replay?",
-                                      preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes",
-                                      style: .default,
-                                      handler: { [weak self] _ in
+        CustomAlertReplay.showAlert(
+            on: self, actionTitle: "Yes",
+            actionStyle: .default) { [weak self] _ in
             self?.replay()
-        }))
-        
-        
-        alert.addAction(UIAlertAction(title: "No",
-                                      style: .cancel,
-                                      handler: nil))
-        
-        present(alert, animated: true)
+        }
     }
     
     func changeNumberOf(index: Int) -> Int {
@@ -844,14 +699,6 @@ final class WithComputerVC: BaseVC {
     
     
     // MARK: - Callbacks
-    @objc func numberButtonsPressed(_ sender: UIButton) {
-        numberIndex = sender.tag
-        
-        let newIndex = changeNumberOf(index: arrayOfNumberIndexes[numberIndex])
-        arrayOfNumberIndexes[numberIndex] = newIndex
-        
-        changeButtonColor(button: sender, index: arrayOfNumberIndexes[numberIndex])
-    }
     
     @objc func checkButtonPressed(_ sender: UIButton) {
         usersMove()

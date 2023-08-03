@@ -246,15 +246,7 @@ final class CreatePasswordVC: BaseVC {
         
         view.backgroundColor = .white
         
-        makeButtonsArray()
         setupSubviews()
-        
-        let largeConfig = UIImage.SymbolConfiguration(
-            pointSize: 140, weight: .bold, scale: .large)
-        let largeNumber = UIImage(
-            systemName: "1.circle", withConfiguration: largeConfig)
-        
-        number1Button.setImage(largeNumber, for: .normal)
         
         bind()
     }
@@ -270,6 +262,7 @@ final class CreatePasswordVC: BaseVC {
             }
             .store(in: &cancellables)
         
+        makeButtonsArray()
     }
     
     // MARK: - Setup
