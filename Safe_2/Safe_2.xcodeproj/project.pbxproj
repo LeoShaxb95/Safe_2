@@ -273,14 +273,14 @@
 			path = PlayOnline;
 			sourceTree = "<group>";
 		};
-		01A7905E2A79617D009E89AE /* CreatePassword */ = {
+		01A7905E2A79617D009E89AE /* CreatePasswordPage */ = {
 			isa = PBXGroup;
 			children = (
 				01A790632A799567009E89AE /* View */,
 				01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */,
 				01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */,
 			);
-			path = CreatePassword;
+			path = CreatePasswordPage;
 			sourceTree = "<group>";
 		};
 		01A790632A799567009E89AE /* View */ = {
@@ -302,7 +302,7 @@
 		01A790692A7A9425009E89AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				01A7905E2A79617D009E89AE /* CreatePassword */,
+				01A7905E2A79617D009E89AE /* CreatePasswordPage */,
 				01A7906D2A7B7EF3009E89AE /* Alerts */,
 				01A7906A2A7A942F009E89AE /* View */,
 			);
@@ -607,6 +607,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5H96WHB6AS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Safe_2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -633,6 +634,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5H96WHB6AS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Safe_2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
