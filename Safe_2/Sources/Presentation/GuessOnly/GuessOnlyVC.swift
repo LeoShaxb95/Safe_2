@@ -481,7 +481,6 @@ final class GuessOnlyVC: BaseVC {
             realPass += passwordArray[i]
         }
         
-        print("31415\(realPass)")
     }
     
     func setupDifficultyOptions() {
@@ -608,14 +607,9 @@ extension GuessOnlyVC: UIPickerViewDelegate, UIPickerViewDataSource {
             pickerView.selectRow((loopingMargin / 2) * arrayOfNumbers.count + currentIndex, inComponent: 0, animated: false)
             forthX = String(arrayOfNumbers[currentIndex])
         default:
-            print("mrint")
+            break
         }
         passwordLabel.text = "\(firstX)\(secondX)\(thirdX)\(forthX)"
     }
     
 }
-
-
-
-
-

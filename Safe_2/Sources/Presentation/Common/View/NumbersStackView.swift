@@ -77,7 +77,7 @@ class NumbersStackView: UIStackView {
         case 2:
             button.backgroundColor = .systemRed
         default:
-            print(button)
+            break
         }
     }
     

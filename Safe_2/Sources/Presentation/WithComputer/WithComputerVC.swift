@@ -574,17 +574,14 @@ final class WithComputerVC: BaseVC {
     
     func switchClocks() {
         if usersClockIsActive == true {
-            print("true")
             usersTimer.invalidate()
             computersTimerGetStarted()
             usersClockIsActive = false
         } else {
-            print("false")
             computersTimer.invalidate()
             usersTimerGetStarted()
             usersClockIsActive = true
         }
-        
     }
     
     func backToStartPage() {
@@ -642,8 +639,6 @@ final class WithComputerVC: BaseVC {
         for i in 0...3 {
             realPass += passwordArray[i]
         }
-        
-        print("31415\(realPass)")
     }
     
     func alertMessageHome() {
@@ -673,7 +668,7 @@ final class WithComputerVC: BaseVC {
         case 2:
             newIndex = 0
         default:
-            print("aaa")
+            break
         }
         return newIndex
     }
@@ -687,7 +682,7 @@ final class WithComputerVC: BaseVC {
         case 2:
             button.backgroundColor = .systemRed
         default:
-            print(button)
+            break
         }
     }
     
@@ -784,7 +779,6 @@ final class WithComputerVC: BaseVC {
                 }
             }
             arrayOfUsedVariants.append(tryingPass)
-            print("TryingPass is: \(tryingPass)")
         }
         
         while isSafeOpened == false {
@@ -839,9 +833,6 @@ final class WithComputerVC: BaseVC {
                     }
                 }
             }
-            
-            print("\(movesCounter): \(arrayOfAllVariants)")
-            print("arrayOfUsedVariants: \(arrayOfUsedVariants)")
         }
     }
     
@@ -939,10 +930,9 @@ extension WithComputerVC: UIPickerViewDelegate, UIPickerViewDataSource {
             pickerView.selectRow((loopingMargin / 2) * arrayOfPickerViewNumbers.count + currentIndex, inComponent: 0, animated: false)
             forthX = String(arrayOfPickerViewNumbers[currentIndex])
         default:
-            print("mrint")
+            break
         }
         passwordLabel.text = "\(firstX)\(secondX)\(thirdX)\(forthX)"
     }
     
 }
-

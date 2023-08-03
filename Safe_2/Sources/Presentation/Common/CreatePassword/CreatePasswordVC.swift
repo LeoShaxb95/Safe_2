@@ -382,7 +382,11 @@ final class CreatePasswordVC: BaseVC {
             errorLabel.text = "Password must have 4 symbols"
         } else {
             errorLabel.text = " "
-            self.presenter.moveToWithComputerScreen()
+            if StartPageVC.gameStyleIndex == 2 {
+                self.presenter.moveToWithComputerScreen()
+            } else {
+                self.presenter.moveToPlayOnlineScreen()
+            }
         }
     }
 }

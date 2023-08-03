@@ -249,7 +249,6 @@
 		01A7904A2A76E967009E89AE /* WithComputer */ = {
 			isa = PBXGroup;
 			children = (
-				01A7905E2A79617D009E89AE /* CreatePassword */,
 				01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */,
 				01A7904B2A76E997009E89AE /* WithComputerVC.swift */,
 			);
@@ -303,6 +302,7 @@
 		01A790692A7A9425009E89AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				01A7905E2A79617D009E89AE /* CreatePassword */,
 				01A7906D2A7B7EF3009E89AE /* Alerts */,
 				01A7906A2A7A942F009E89AE /* View */,
 			);

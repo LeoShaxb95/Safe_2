@@ -329,9 +329,7 @@ final class BetsPageVC: BaseVC {
     
     // MARK: - Callbacks
     
-    @objc func sliderValueDidChange(_ sender: UISlider) {
-        print("Slider value changed")
-        
+    @objc func sliderValueDidChange(_ sender: UISlider) {       
         let roundedStepValue = Int(round(sender.value / step) * step)
         currentSliderValue = roundedStepValue
         currentFiniksLabel.text = "\(currentSliderValue) Finics"
@@ -372,10 +370,8 @@ final class BetsPageVC: BaseVC {
         switch StartPageVC.gameStyleIndex {
         case 1:
             self.presenter.moveToGuessOnlyScreen()
-        case 2:
+        case 2, 3:
             self.presenter.moveToCreatePasswordScreen()
-        case 3:
-            self.presenter.moveToPlayOnlineScreen()
         default:
             break
         }

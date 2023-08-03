@@ -10,13 +10,11 @@ import Foundation
 protocol BetsPagePresenterProtocol {
     func moveToGuessOnlyScreen()
     func moveToCreatePasswordScreen()
-    func moveToPlayOnlineScreen()
 }
 
 struct BetsPageOutput {
     var onMoveToGuessOnly: (() -> Void)!
     var onMoveToCreatePassword: (() -> Void)!
-    var onMoveToPlayOnline: (() -> Void)!
 }
 
 final class BetsPagePresenter {
@@ -37,9 +35,4 @@ extension BetsPagePresenter: BetsPagePresenterProtocol {
     func moveToCreatePasswordScreen() {
         output.onMoveToCreatePassword()
     }
-    
-    func moveToPlayOnlineScreen() {
-        output.onMoveToPlayOnline()
-    }
-    
 }

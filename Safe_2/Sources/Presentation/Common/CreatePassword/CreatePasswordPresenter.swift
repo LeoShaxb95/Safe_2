@@ -9,10 +9,12 @@ import Foundation
 
 protocol CreatePasswordPresenterProtocol {
     func moveToWithComputerScreen()
+    func moveToPlayOnlineScreen()
 }
 
 struct CreatePasswordOutput {
     var onMoveToWithComputer: (() -> Void)!
+    var onMoveToPlayOnline: (() -> Void)!
 }
 
 final class CreatePasswordPresenter {
@@ -28,6 +30,10 @@ final class CreatePasswordPresenter {
 extension CreatePasswordPresenter: CreatePasswordPresenterProtocol {
     func moveToWithComputerScreen() {
         output.onMoveToWithComputer()
+    }
+    
+    func moveToPlayOnlineScreen() {
+        output.onMoveToPlayOnline()
     }
 }
 

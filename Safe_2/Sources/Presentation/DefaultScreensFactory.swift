@@ -49,12 +49,6 @@ class DefaultScreensFactory: ScreensFactory {
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
-        output.onMoveToPlayOnline = { [weak self] in
-            guard let self else { return }
-            let vc = self.makePlayOnline()
-            SceneDelegate.router?.push(module: vc, animated: true)
-        }
-        
         let presenter = BetsPagePresenter(output: output)
         return BetsPageVC(presenter: presenter)
     }
@@ -81,6 +75,12 @@ class DefaultScreensFactory: ScreensFactory {
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
+        output.onMoveToPlayOnline = { [weak self] in
+            guard let self else { return }
+            let vc = self.makePlayOnline()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
         let presenter = CreatePasswordPresenter(output: output)
         return CreatePasswordVC(presenter: presenter)
     }
@@ -99,7 +99,15 @@ class DefaultScreensFactory: ScreensFactory {
     }
     
     func makePlayOnline() -> PlayOnlineVC {
-        let presenter = PlayOnlinePresenter()
+        var output = PlayOnlineOutput()
+        
+        output.onMoveToStartPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeStartPage()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = PlayOnlinePresenter(output: output)
         return PlayOnlineVC(presenter: presenter)
     }
 }

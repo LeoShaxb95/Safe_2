@@ -19,9 +19,9 @@ public struct AppColors {
     // Variants Button
     
     static var VariantButtonInactiveBackground = UIColor(
-        red: 0/255,
-        green: 168/255,
-        blue: 255/255,
+        red: 100/255,
+        green: 192/255,
+        blue: 222/255,
         alpha: 1
     )
     
@@ -34,8 +34,8 @@ public struct AppColors {
     
     static var VariantButtonActiveBackground = UIColor(
         red: 0/255,
-        green: 122/255,
-        blue: 255/255,
+        green: 159/255,
+        blue: 211/255,
         alpha: 1
     )
 
