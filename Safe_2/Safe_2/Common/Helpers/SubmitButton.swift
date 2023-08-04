@@ -11,13 +11,11 @@ public class SubmitButton: UIButton {
 
     // MARK: - Properties
 
-    // Enum to represent the button state
     public enum ButtonState {
         case active
         case inactive
     }
 
-    // Property to store the current state
     public var buttonState: ButtonState = .inactive {
         didSet {
             updateButtonAppearance()

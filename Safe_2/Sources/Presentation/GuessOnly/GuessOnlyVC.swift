@@ -66,7 +66,6 @@ final class GuessOnlyVC: BaseVC {
         return v
     }()
     
-    // Message label
     let messageLabel: UILabel = {
         let v = UILabel()
         v.font = .systemFont(ofSize: 20, weight: .regular)
@@ -76,7 +75,6 @@ final class GuessOnlyVC: BaseVC {
         return v
     }()
     
-    // Result Text View
     let resultTextView: UITextView = {
         let v = UITextView()
         v.backgroundColor = .white
@@ -84,16 +82,12 @@ final class GuessOnlyVC: BaseVC {
         v.isEditable = false
         return v
     }()
-    
-    //Numbers Stack View
-    
+        
     lazy var numbersStackView: NumbersStackView = {
         let v = NumbersStackView()
         
         return v
     }()
-
-    // Labels StackView
     
     lazy var labelsStackView: UIStackView = {
         let v = UIStackView(arrangedSubviews: [
@@ -121,7 +115,6 @@ final class GuessOnlyVC: BaseVC {
         return v
     }()
     
-    // InfoLabelsStackView
     lazy var infoLabelsStackView: UIStackView = {
         let v = UIStackView(arrangedSubviews: [
             passwordLabel,
@@ -173,7 +166,6 @@ final class GuessOnlyVC: BaseVC {
         return v
     }()
     
-    //PickerView
     lazy var pickerViewStackView: UIStackView = {
         let v = UIStackView(arrangedSubviews: [
             pickerView1,
@@ -377,7 +369,7 @@ final class GuessOnlyVC: BaseVC {
             errorLabel.backgroundColor = .green
             checkButton.isUserInteractionEnabled = false
             timer.invalidate()
-            //            FiniksCounterViewController.finiksCount += 1000
+            // Soon - FiniksCounterViewController.finiksCount += 1000
         }
     }
     

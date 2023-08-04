@@ -12,6 +12,11 @@ final class WithComputerVC: BaseVC {
     
     // MARK: - Properties
     
+    enum gameResult {
+        case win
+        case lose
+    }
+    
     let loopingMargin: Int = 20
     var gameConfigs = GameConfigs()
     var difficulty: GameConfigs.Difficulty?
@@ -44,6 +49,8 @@ final class WithComputerVC: BaseVC {
     var arrayOfNumbers: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var usersClockIsActive = true
     var isUsersTurn = true
+    var replayButtonPressed = false
+    var gameIsOver = false
     var compAnswersCounter = 0
     var numberIndex: Int = 0
     var diffType: Int = 0
@@ -113,10 +120,6 @@ final class WithComputerVC: BaseVC {
         
         return stackView
     }()
-    
-    // Result Text View
-    
-    // left result stack view
     
     lazy var leftResultStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -221,8 +224,6 @@ final class WithComputerVC: BaseVC {
         return v
     }()
     
-    // Labels StackView
-    
     lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             errorLabel,
@@ -250,7 +251,6 @@ final class WithComputerVC: BaseVC {
         return label
     }()
     
-    // InfoLabelsStackView
     lazy var infoLabelsStackView: UIStackView = {
         let v = UIStackView(arrangedSubviews: [
             passwordLabel,
@@ -479,10 +479,7 @@ final class WithComputerVC: BaseVC {
         
         leftResultTextView.text = leftResultTextViewText
         if countOfEquals == 4 {
-            view.backgroundColor = .green
-            errorLabel.backgroundColor = .green
-            checkButton.isUserInteractionEnabled = false
-            usersTimer.invalidate()
+            gameOverWith(result: .win)
         }
     }
     
@@ -524,12 +521,7 @@ final class WithComputerVC: BaseVC {
         usersTime -= 1
         usersTimeLabel.text = self.timeString(time: usersTime)
         if usersTime == 0 {
-            usersTimer.invalidate()
-            view.backgroundColor = .red
-            errorLabel.backgroundColor = .red
-            errorLabel.text = "Password was \(realPass)"
-            errorLabel.textColor = .black
-            checkButton.isUserInteractionEnabled = false
+            gameOverWith(result: .lose)
         }
     }
     
@@ -544,7 +536,7 @@ final class WithComputerVC: BaseVC {
     func timeConfigs() {
         switch diffType {
         case 0:
-            usersTime = 180
+            usersTime = 10
             computersTime = 180
         case 1:
             usersTime = 360
@@ -561,19 +553,20 @@ final class WithComputerVC: BaseVC {
     }
     
     func usersTimerGetStarted() {
-        usersTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                          selector: #selector(usersClock),
-                                          userInfo: nil, repeats: true)
+        usersTimer.invalidate()
+        usersTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self, selector: #selector(usersClock),
+            userInfo: nil, repeats: true)
     }
     
     func computersTimerGetStarted() {
-        computersTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                              selector: #selector(computersClock),
-                                              userInfo: nil, repeats: true)
+        computersTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self, selector: #selector(computersClock),
+            userInfo: nil, repeats: true)
     }
     
     func switchClocks() {
-        if usersClockIsActive == true {
+        if usersClockIsActive {
             usersTimer.invalidate()
             computersTimerGetStarted()
             usersClockIsActive = false
@@ -584,9 +577,25 @@ final class WithComputerVC: BaseVC {
         }
     }
     
-    func backToStartPage() {
-        getStartPosition()
-        self.dismiss(animated: false, completion: nil)
+    func gameOverWith(result: gameResult) {
+        gameIsOver = true
+        replayButtonPressed = false
+        usersTimer.invalidate()
+        computersTimer.invalidate()
+        checkButton.isEnabled = false
+        errorLabel.text = "Password was \(realPass)"
+        errorLabel.textColor = .black
+        
+        switch result {
+        case .win:
+            view.backgroundColor = .green
+            errorLabel.backgroundColor = .green
+        case .lose:
+            view.backgroundColor = .red
+            errorLabel.backgroundColor = .red
+        default:
+            break
+        }
     }
     
     @objc func didTapReplayButton() {
@@ -594,29 +603,42 @@ final class WithComputerVC: BaseVC {
     }
     
     func replay() {
+        replayButtonPressed = true
+        gameIsOver = false
         getStartPosition()
         configureView()
+        replayButtonPressed = false
     }
     
     func getStartPosition() {
         passwordArray = []
-        realPass = ""
         userPasswordArray = []
+        
         answersCounter = 0
+        compAnswersCounter = 0
+        numberIndex = 0
+        
+        realPass = ""
         firstX = "_"
         secondX = "_"
         thirdX = "_"
         forthX = "_"
         leftResultTextView.text = ""
-        errorLabelText = ""
-        numberIndex = 0
-        view.backgroundColor = .systemGray5
-        errorLabel.backgroundColor = .systemGray5
-        numbersStackView.unColoringNumberButtons()
+        rightResultTextView.text = ""
         errorLabel.text = " "
         passwordLabel.text = "____"
+        leftResultTextViewText = ""
+        rightResultTextViewText = ""
+        errorLabelText = ""
+        
+        view.backgroundColor = .systemGray5
+        errorLabel.backgroundColor = .systemGray5
+        
+        numbersStackView.unColoringNumberButtons()
         pickerViewStartPoint()
+        checkButton.isEnabled = true
         usersTimer.invalidate()
+        computersTimer.invalidate()
     }
     
     func configureView() {
@@ -713,12 +735,10 @@ final class WithComputerVC: BaseVC {
                     realPassword: passwordArray,
                     usersPassword: usersPassword
                 )
+                checkButton.isEnabled = false
                 switchClocks()
                 computersMove()
             }
-        }
-        else {
-            fatalError()
         }
     }
     
@@ -837,24 +857,33 @@ final class WithComputerVC: BaseVC {
     }
     
     @objc func newComputerAnswer() {
-        
-        let newAnswer = arrayOfUsedVariants[index]
-        let newDoublicatesCount = arrayOfRealDoublicates[index]
-        let newEqualsCount = arrayOfRealEquals[index]
-        
-        if compAnswersCounter == 0 {
-            rightResultTextViewText = " 01. \(newAnswer) - \(newDoublicatesCount) : \(newEqualsCount)"
-            compAnswersCounter += 1
-        } else if compAnswersCounter < 9 {
-            rightResultTextViewText = "\(rightResultTextViewText) \n " + "0\(compAnswersCounter + 1). \(newAnswer) - \(newDoublicatesCount) : \(newEqualsCount)"
-            compAnswersCounter += 1
-        } else {
-            rightResultTextViewText = "\(rightResultTextViewText) \n " + "\(compAnswersCounter + 1). \(newAnswer) - \(newDoublicatesCount) : \(newEqualsCount)"
-            compAnswersCounter += 1
+        if !replayButtonPressed {
+            let newAnswer = arrayOfUsedVariants[index]
+            let newDoublicatesCount = arrayOfRealDoublicates[index]
+            let newEqualsCount = arrayOfRealEquals[index]
+            
+            if compAnswersCounter == 0 {
+                rightResultTextViewText = " 01. \(newAnswer) - \(newDoublicatesCount) : \(newEqualsCount)"
+                compAnswersCounter += 1
+            } else if compAnswersCounter < 9 {
+                rightResultTextViewText = "\(rightResultTextViewText) \n " + "0\(compAnswersCounter + 1). \(newAnswer) - \(newDoublicatesCount) : \(newEqualsCount)"
+                compAnswersCounter += 1
+            } else {
+                rightResultTextViewText = "\(rightResultTextViewText) \n " + "\(compAnswersCounter + 1). \(newAnswer) - \(newDoublicatesCount) : \(newEqualsCount)"
+                compAnswersCounter += 1
+            }
+            if newEqualsCount == 4 {
+                gameOverWith(result: .lose)
+            } else {
+                checkButton.isEnabled = true
+            }
+            rightResultTextView.text = rightResultTextViewText
+            index += 1
         }
-        rightResultTextView.text = rightResultTextViewText
-        index += 1
-        switchClocks()
+        if !gameIsOver {
+            switchClocks()
+        }
+        replayButtonPressed = false
     }
     
     func computersMove() {

@@ -24,7 +24,6 @@ final class BetsPageVC: BaseVC {
 
     // MARK: - Subviews
    
-    // Difficulty
     let difficultyLabel: UILabel = {
         let v = UILabel()
         v.font = .systemFont(ofSize: 30, weight: .heavy)
@@ -81,7 +80,6 @@ final class BetsPageVC: BaseVC {
         return v
     }()
 
-    // Finiks part
     let helpLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
