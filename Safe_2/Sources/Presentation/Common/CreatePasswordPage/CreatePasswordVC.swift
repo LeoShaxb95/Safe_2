@@ -25,7 +25,6 @@ final class CreatePasswordVC: BaseVC {
         v.numberOfLines = 0
         v.backgroundColor = .white
         v.text = "Create password \nfor your safe"
-        //        v.textColor = .black
         v.textAlignment = .center
         v.font = .systemFont(ofSize: 29, weight: .heavy)
         

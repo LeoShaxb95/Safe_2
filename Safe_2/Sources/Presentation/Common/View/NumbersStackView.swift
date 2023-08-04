@@ -12,9 +12,6 @@ import UIKit
 class NumbersStackView: UIStackView {
     
     var arrayOfNumberIndexes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-
-    // Define your custom buttons as properties
     private var numberButtons: [NumberButton] = []
 
     override init(frame: CGRect) {

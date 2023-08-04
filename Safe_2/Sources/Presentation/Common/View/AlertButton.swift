@@ -27,7 +27,7 @@ public class AlertButton: UIButton {
         self.backgroundColor = .systemGray
         self.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         self.layer.cornerRadius = 20
-        self.clipsToBounds = true // Clip subviews to rounded corners
+        self.clipsToBounds = true
         self.isUserInteractionEnabled = true
         self.isEnabled = true
     }

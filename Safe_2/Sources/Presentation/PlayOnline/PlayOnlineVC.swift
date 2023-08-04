@@ -114,10 +114,6 @@ final class PlayOnlineVC: BaseVC {
         return stackView
     }()
     
-    // Result Text View
-    
-    // left result stack view
-    
     lazy var leftResultStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             leftResultLabel,
@@ -221,8 +217,6 @@ final class PlayOnlineVC: BaseVC {
         return v
     }()
     
-    // Labels StackView
-    
     lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             errorLabel,
@@ -250,7 +244,6 @@ final class PlayOnlineVC: BaseVC {
         return label
     }()
     
-    // InfoLabelsStackView
     lazy var infoLabelsStackView: UIStackView = {
         let v = UIStackView(arrangedSubviews: [
             passwordLabel,
