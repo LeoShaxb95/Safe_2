@@ -94,6 +94,12 @@ class DefaultScreensFactory: ScreensFactory {
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
+        output.onMoveCreatePasswordPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeCreatePassword()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
         let presenter = WithComputerPresenter(output: output)
         return WithComputerVC(presenter: presenter)
     }

@@ -179,24 +179,10 @@ final class CreatePasswordVC: BaseVC {
         return v
     }()
     
-    lazy var numbers4StackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [
-            resetButton,
-            number0Button,
-            doneButton
-        ])
-        stack.axis = .horizontal
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.spacing = 20
-        
-        return stack
-    }()
-    
     let resetButton: UIButton = {
         let v = UIButton()
         v.setTitle("Reset", for: .normal)
-        v.titleLabel?.font = .systemFont(ofSize: 10)
+        v.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         v.backgroundColor = .systemGray
         v.layer.cornerRadius = 16
         v.addTarget(self, action: #selector(resetButtonPressed),
@@ -216,7 +202,7 @@ final class CreatePasswordVC: BaseVC {
     let doneButton: UIButton = {
         let v = UIButton()
         v.setTitle("Done", for: .normal)
-        v.titleLabel?.font = .systemFont(ofSize: 10)
+        v.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         v.backgroundColor = .systemGray
         v.layer.cornerRadius = 16
         
@@ -274,7 +260,9 @@ final class CreatePasswordVC: BaseVC {
             numbers1StackView,
             numbers2StackView,
             numbers3StackView,
-            numbers4StackView
+            resetButton,
+            number0Button,
+            doneButton
         ])
     }
     
@@ -288,16 +276,18 @@ final class CreatePasswordVC: BaseVC {
         numbers1StackView.pin(edges: [.leading, .trailing], to: view, inset: 30)
         numbers2StackView.pin(edges: [.leading, .trailing], to: view, inset: 30)
         numbers3StackView.pin(edges: [.leading, .trailing], to: view, inset: 30)
-        numbers4StackView.pin(edges: [.leading, .trailing], to: view, inset: 30)
-        
+        resetButton.pin(edges: [.leading], to: view, inset: 30)
+        doneButton.pin(edges: [.trailing], to: view, inset: 30)
+
         helpLabel.set(height: 100)
         passwordTextField.set(width: 100, height: 35)
         errorLabel.set(height: 20)
-        number1Button.set(height: 55)
-        number4Button.set(height: 55)
-        number7Button.set(height: 55)
-        resetButton.set(height: 55)
-        errorLabel.set(height: 20)
+        number1Button.set(height: 70)
+        number4Button.set(height: 70)
+        number7Button.set(height: 70)
+        number0Button.set(width: 95, height: 70)
+        resetButton.set(width: 100, height: 55)
+        doneButton.set(width: 100, height: 55)
         
         NSLayoutConstraint.activate([
             passwordTextField.topAnchor.constraint(
@@ -310,8 +300,14 @@ final class CreatePasswordVC: BaseVC {
                 equalTo: numbers1StackView.bottomAnchor, constant: 10),
             numbers3StackView.topAnchor.constraint(
                 equalTo: numbers2StackView.bottomAnchor, constant: 10),
-            numbers4StackView.topAnchor.constraint(
+            number0Button.topAnchor.constraint(
                 equalTo: numbers3StackView.bottomAnchor, constant: 10),
+            number0Button.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor),
+            resetButton.centerYAnchor.constraint(
+                equalTo: number0Button.centerYAnchor),
+            doneButton.centerYAnchor.constraint(
+                equalTo: number0Button.centerYAnchor),
         ])
         
     }
