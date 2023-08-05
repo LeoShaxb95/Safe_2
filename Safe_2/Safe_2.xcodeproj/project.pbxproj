@@ -7,21 +7,90 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A7900B2A75426E009E89AE /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7900A2A75426E009E89AE /* BaseVC.swift */; };
+		01A790102A755FBA009E89AE /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7900F2A755FBA009E89AE /* Dependencies.swift */; };
+		01A790132A755FE0009E89AE /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790122A755FE0009E89AE /* KeychainService.swift */; };
+		01A790162A756012009E89AE /* DefaultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790152A756012009E89AE /* DefaultRouter.swift */; };
+		01A790192A756039009E89AE /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790182A756039009E89AE /* Presentable.swift */; };
+		01A7901B2A75604C009E89AE /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7901A2A75604C009E89AE /* Routable.swift */; };
+		01A7901E2A756077009E89AE /* DefaultScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7901D2A756077009E89AE /* DefaultScreensFactory.swift */; };
+		01A790212A7560C7009E89AE /* StartPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790202A7560C7009E89AE /* StartPagePresenter.swift */; };
+		01A790232A7560D7009E89AE /* StartPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790222A7560D7009E89AE /* StartPageVC.swift */; };
+		01A790262A7560F9009E89AE /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01A790252A7560F9009E89AE /* KeychainSwift */; };
+		01A790292A7564D1009E89AE /* StartPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790282A7564D1009E89AE /* StartPageModels.swift */; };
+		01A7902C2A75691C009E89AE /* UIView+pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7902B2A75691C009E89AE /* UIView+pin.swift */; };
+		01A7902F2A7569C5009E89AE /* UIView+sizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7902E2A7569C5009E89AE /* UIView+sizeConstraints.swift */; };
+		01A790312A756BA4009E89AE /* UIView+addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790302A756BA4009E89AE /* UIView+addSubviews.swift */; };
+		01A790332A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790322A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift */; };
+		01A790352A756D3C009E89AE /* prepareForAutolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790342A756D3C009E89AE /* prepareForAutolayout.swift */; };
+		01A790382A7598FA009E89AE /* VariantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790372A7598FA009E89AE /* VariantButton.swift */; };
+		01A7903F2A759B80009E89AE /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7903E2A759B80009E89AE /* AppColors.swift */; };
+		01A790412A761C37009E89AE /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790402A761C37009E89AE /* SubmitButton.swift */; };
+		01A790452A76866B009E89AE /* BetsPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790442A76866B009E89AE /* BetsPageVC.swift */; };
+		01A790472A7686A0009E89AE /* BetsPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790462A7686A0009E89AE /* BetsPagePresenter.swift */; };
+		01A790492A768935009E89AE /* UIControl+interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790482A768935009E89AE /* UIControl+interaction.swift */; };
+		01A7904C2A76E997009E89AE /* WithComputerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7904B2A76E997009E89AE /* WithComputerVC.swift */; };
+		01A7904E2A76E9AF009E89AE /* WithComputerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */; };
+		01A790512A76EB43009E89AE /* GuessOnlyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790502A76EB43009E89AE /* GuessOnlyVC.swift */; };
+		01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */; };
+		01A790562A76EBC1009E89AE /* PlayOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */; };
+		01A790582A76EBCF009E89AE /* PlayOnlinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */; };
+		01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905A2A78B501009E89AE /* AlertButton.swift */; };
+		01A7905D2A78B8D9009E89AE /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905C2A78B8D9009E89AE /* NumberButton.swift */; };
+		01A790602A7961BA009E89AE /* CreatePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */; };
+		01A790622A7961CA009E89AE /* CreatePasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */; };
+		01A790652A799591009E89AE /* PasswordNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790642A799591009E89AE /* PasswordNumberButton.swift */; };
+		01A790682A7A650D009E89AE /* UIButton+flash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790672A7A650D009E89AE /* UIButton+flash.swift */; };
+		01A7906C2A7B77B1009E89AE /* NumbersStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7906B2A7B77B1009E89AE /* NumbersStackView.swift */; };
+		01A7906F2A7B7F03009E89AE /* CustomAlertHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7906E2A7B7F03009E89AE /* CustomAlertHome.swift */; };
+		01A790712A7B7FE9009E89AE /* CustomAlertReplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A790702A7B7FE9009E89AE /* CustomAlertReplay.swift */; };
 		01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E32A73CE13007EC591 /* AppDelegate.swift */; };
 		01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E52A73CE13007EC591 /* SceneDelegate.swift */; };
-		01B337E82A73CE13007EC591 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E72A73CE13007EC591 /* ViewController.swift */; };
-		01B337EB2A73CE13007EC591 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B337E92A73CE13007EC591 /* Main.storyboard */; };
-		01B337ED2A73CE14007EC591 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Assets.xcassets */; };
+		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
 		01B337F02A73CE14007EC591 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EE2A73CE14007EC591 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01A7900A2A75426E009E89AE /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		01A7900F2A755FBA009E89AE /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		01A790122A755FE0009E89AE /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		01A790152A756012009E89AE /* DefaultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRouter.swift; sourceTree = "<group>"; };
+		01A790182A756039009E89AE /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		01A7901A2A75604C009E89AE /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		01A7901D2A756077009E89AE /* DefaultScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultScreensFactory.swift; sourceTree = "<group>"; };
+		01A790202A7560C7009E89AE /* StartPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPagePresenter.swift; sourceTree = "<group>"; };
+		01A790222A7560D7009E89AE /* StartPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageVC.swift; sourceTree = "<group>"; };
+		01A790282A7564D1009E89AE /* StartPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageModels.swift; sourceTree = "<group>"; };
+		01A7902B2A75691C009E89AE /* UIView+pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+pin.swift"; sourceTree = "<group>"; };
+		01A7902E2A7569C5009E89AE /* UIView+sizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+sizeConstraints.swift"; sourceTree = "<group>"; };
+		01A790302A756BA4009E89AE /* UIView+addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addSubviews.swift"; sourceTree = "<group>"; };
+		01A790322A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+addArrangedSubviews.swift"; sourceTree = "<group>"; };
+		01A790342A756D3C009E89AE /* prepareForAutolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prepareForAutolayout.swift; sourceTree = "<group>"; };
+		01A790372A7598FA009E89AE /* VariantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantButton.swift; sourceTree = "<group>"; };
+		01A7903E2A759B80009E89AE /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		01A790402A761C37009E89AE /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
+		01A790442A76866B009E89AE /* BetsPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsPageVC.swift; sourceTree = "<group>"; };
+		01A790462A7686A0009E89AE /* BetsPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsPagePresenter.swift; sourceTree = "<group>"; };
+		01A790482A768935009E89AE /* UIControl+interaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+interaction.swift"; sourceTree = "<group>"; };
+		01A7904B2A76E997009E89AE /* WithComputerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithComputerVC.swift; sourceTree = "<group>"; };
+		01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithComputerPresenter.swift; sourceTree = "<group>"; };
+		01A790502A76EB43009E89AE /* GuessOnlyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessOnlyVC.swift; sourceTree = "<group>"; };
+		01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessOnlyPresenter.swift; sourceTree = "<group>"; };
+		01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlineVC.swift; sourceTree = "<group>"; };
+		01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlinePresenter.swift; sourceTree = "<group>"; };
+		01A7905A2A78B501009E89AE /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
+		01A7905C2A78B8D9009E89AE /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
+		01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordVC.swift; sourceTree = "<group>"; };
+		01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordPresenter.swift; sourceTree = "<group>"; };
+		01A790642A799591009E89AE /* PasswordNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordNumberButton.swift; sourceTree = "<group>"; };
+		01A790672A7A650D009E89AE /* UIButton+flash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+flash.swift"; sourceTree = "<group>"; };
+		01A7906B2A7B77B1009E89AE /* NumbersStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersStackView.swift; sourceTree = "<group>"; };
+		01A7906E2A7B7F03009E89AE /* CustomAlertHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertHome.swift; sourceTree = "<group>"; };
+		01A790702A7B7FE9009E89AE /* CustomAlertReplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertReplay.swift; sourceTree = "<group>"; };
 		01B337E02A73CE13007EC591 /* Safe_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B337E32A73CE13007EC591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B337E52A73CE13007EC591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		01B337E72A73CE13007EC591 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		01B337EA2A73CE13007EC591 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		01B337EC2A73CE14007EC591 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01B337EC2A73CE14007EC591 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01B337EF2A73CE14007EC591 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01B337F12A73CE14007EC591 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -31,16 +100,239 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A790262A7560F9009E89AE /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01A7900C2A754A83009E89AE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				01A7900D2A754A9F009E89AE /* Application */,
+				01A7900E2A754AC4009E89AE /* Dependencies */,
+				01A790142A755FFE009E89AE /* Navigation */,
+				01A7901C2A756060009E89AE /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		01A7900D2A754A9F009E89AE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				01B337E32A73CE13007EC591 /* AppDelegate.swift */,
+				01B337E52A73CE13007EC591 /* SceneDelegate.swift */,
+				01B337EC2A73CE14007EC591 /* Images.xcassets */,
+				01B337EE2A73CE14007EC591 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		01A7900E2A754AC4009E89AE /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				01A7900F2A755FBA009E89AE /* Dependencies.swift */,
+				01A790112A755FC8009E89AE /* Services */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		01A790112A755FC8009E89AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				01A790122A755FE0009E89AE /* KeychainService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		01A790142A755FFE009E89AE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				01A790152A756012009E89AE /* DefaultRouter.swift */,
+				01A790172A756023009E89AE /* Protocols */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		01A790172A756023009E89AE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				01A790182A756039009E89AE /* Presentable.swift */,
+				01A7901A2A75604C009E89AE /* Routable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		01A7901C2A756060009E89AE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				01A7901D2A756077009E89AE /* DefaultScreensFactory.swift */,
+				01A790692A7A9425009E89AE /* Common */,
+				01A7901F2A7560B2009E89AE /* StartPage */,
+				01A790432A76864B009E89AE /* BetsPage */,
+				01A7904F2A76EB27009E89AE /* GuessOnly */,
+				01A7904A2A76E967009E89AE /* WithComputer */,
+				01A790542A76EB9F009E89AE /* PlayOnline */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		01A7901F2A7560B2009E89AE /* StartPage */ = {
+			isa = PBXGroup;
+			children = (
+				01A790272A7564BE009E89AE /* Models */,
+				01A790202A7560C7009E89AE /* StartPagePresenter.swift */,
+				01A790222A7560D7009E89AE /* StartPageVC.swift */,
+			);
+			path = StartPage;
+			sourceTree = "<group>";
+		};
+		01A790272A7564BE009E89AE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				01A790282A7564D1009E89AE /* StartPageModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		01A7902A2A7568FE009E89AE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				01A790662A7A64E6009E89AE /* UIControl */,
+				01A7902D2A7569A5009E89AE /* UIView */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		01A7902D2A7569A5009E89AE /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				01A7902B2A75691C009E89AE /* UIView+pin.swift */,
+				01A7902E2A7569C5009E89AE /* UIView+sizeConstraints.swift */,
+				01A790302A756BA4009E89AE /* UIView+addSubviews.swift */,
+				01A790322A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift */,
+				01A790342A756D3C009E89AE /* prepareForAutolayout.swift */,
+				01A790482A768935009E89AE /* UIControl+interaction.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		01A7903C2A759B48009E89AE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				01A7902A2A7568FE009E89AE /* Extensions */,
+				01A790422A7682CF009E89AE /* Helpers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		01A790422A7682CF009E89AE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				01A7903E2A759B80009E89AE /* AppColors.swift */,
+				01A790402A761C37009E89AE /* SubmitButton.swift */,
+				01A790372A7598FA009E89AE /* VariantButton.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		01A790432A76864B009E89AE /* BetsPage */ = {
+			isa = PBXGroup;
+			children = (
+				01A790462A7686A0009E89AE /* BetsPagePresenter.swift */,
+				01A790442A76866B009E89AE /* BetsPageVC.swift */,
+			);
+			path = BetsPage;
+			sourceTree = "<group>";
+		};
+		01A7904A2A76E967009E89AE /* WithComputer */ = {
+			isa = PBXGroup;
+			children = (
+				01A7904D2A76E9AF009E89AE /* WithComputerPresenter.swift */,
+				01A7904B2A76E997009E89AE /* WithComputerVC.swift */,
+			);
+			path = WithComputer;
+			sourceTree = "<group>";
+		};
+		01A7904F2A76EB27009E89AE /* GuessOnly */ = {
+			isa = PBXGroup;
+			children = (
+				01A790522A76EB51009E89AE /* GuessOnlyPresenter.swift */,
+				01A790502A76EB43009E89AE /* GuessOnlyVC.swift */,
+			);
+			path = GuessOnly;
+			sourceTree = "<group>";
+		};
+		01A790542A76EB9F009E89AE /* PlayOnline */ = {
+			isa = PBXGroup;
+			children = (
+				01A790572A76EBCF009E89AE /* PlayOnlinePresenter.swift */,
+				01A790552A76EBC1009E89AE /* PlayOnlineVC.swift */,
+			);
+			path = PlayOnline;
+			sourceTree = "<group>";
+		};
+		01A7905E2A79617D009E89AE /* CreatePasswordPage */ = {
+			isa = PBXGroup;
+			children = (
+				01A790632A799567009E89AE /* View */,
+				01A790612A7961CA009E89AE /* CreatePasswordPresenter.swift */,
+				01A7905F2A7961BA009E89AE /* CreatePasswordVC.swift */,
+			);
+			path = CreatePasswordPage;
+			sourceTree = "<group>";
+		};
+		01A790632A799567009E89AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A790642A799591009E89AE /* PasswordNumberButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01A790662A7A64E6009E89AE /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				01A790672A7A650D009E89AE /* UIButton+flash.swift */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
+		01A790692A7A9425009E89AE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				01A7905E2A79617D009E89AE /* CreatePasswordPage */,
+				01A7906D2A7B7EF3009E89AE /* Alerts */,
+				01A7906A2A7A942F009E89AE /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		01A7906A2A7A942F009E89AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A7905A2A78B501009E89AE /* AlertButton.swift */,
+				01A7905C2A78B8D9009E89AE /* NumberButton.swift */,
+				01A7906B2A7B77B1009E89AE /* NumbersStackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01A7906D2A7B7EF3009E89AE /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				01A7906E2A7B7F03009E89AE /* CustomAlertHome.swift */,
+				01A790702A7B7FE9009E89AE /* CustomAlertReplay.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		01B337D72A73CE13007EC591 = {
 			isa = PBXGroup;
 			children = (
 				01B337E22A73CE13007EC591 /* Safe_2 */,
+				01A7900C2A754A83009E89AE /* Sources */,
 				01B337E12A73CE13007EC591 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +348,8 @@
 		01B337E22A73CE13007EC591 /* Safe_2 */ = {
 			isa = PBXGroup;
 			children = (
-				01B337E32A73CE13007EC591 /* AppDelegate.swift */,
-				01B337E52A73CE13007EC591 /* SceneDelegate.swift */,
-				01B337E72A73CE13007EC591 /* ViewController.swift */,
-				01B337E92A73CE13007EC591 /* Main.storyboard */,
-				01B337EC2A73CE14007EC591 /* Assets.xcassets */,
-				01B337EE2A73CE14007EC591 /* LaunchScreen.storyboard */,
+				01A7903C2A759B48009E89AE /* Common */,
+				01A7900A2A75426E009E89AE /* BaseVC.swift */,
 				01B337F12A73CE14007EC591 /* Info.plist */,
 			);
 			path = Safe_2;
@@ -83,6 +371,9 @@
 			dependencies = (
 			);
 			name = Safe_2;
+			packageProductDependencies = (
+				01A790252A7560F9009E89AE /* KeychainSwift */,
+			);
 			productName = Safe_2;
 			productReference = 01B337E02A73CE13007EC591 /* Safe_2.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +402,9 @@
 				Base,
 			);
 			mainGroup = 01B337D72A73CE13007EC591;
+			packageReferences = (
+				01A790242A7560F9009E89AE /* XCRemoteSwiftPackageReference "keychain-swift" */,
+			);
 			productRefGroup = 01B337E12A73CE13007EC591 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,8 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01B337F02A73CE14007EC591 /* LaunchScreen.storyboard in Resources */,
-				01B337ED2A73CE14007EC591 /* Assets.xcassets in Resources */,
-				01B337EB2A73CE13007EC591 /* Main.storyboard in Resources */,
+				01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +431,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B337E82A73CE13007EC591 /* ViewController.swift in Sources */,
+				01A790452A76866B009E89AE /* BetsPageVC.swift in Sources */,
+				01A790562A76EBC1009E89AE /* PlayOnlineVC.swift in Sources */,
+				01A790312A756BA4009E89AE /* UIView+addSubviews.swift in Sources */,
+				01A790192A756039009E89AE /* Presentable.swift in Sources */,
 				01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */,
+				01A7906F2A7B7F03009E89AE /* CustomAlertHome.swift in Sources */,
+				01A790162A756012009E89AE /* DefaultRouter.swift in Sources */,
+				01A790622A7961CA009E89AE /* CreatePasswordPresenter.swift in Sources */,
+				01A790212A7560C7009E89AE /* StartPagePresenter.swift in Sources */,
 				01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */,
+				01A790652A799591009E89AE /* PasswordNumberButton.swift in Sources */,
+				01A790472A7686A0009E89AE /* BetsPagePresenter.swift in Sources */,
+				01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */,
+				01A790682A7A650D009E89AE /* UIButton+flash.swift in Sources */,
+				01A790512A76EB43009E89AE /* GuessOnlyVC.swift in Sources */,
+				01A790102A755FBA009E89AE /* Dependencies.swift in Sources */,
+				01A7902C2A75691C009E89AE /* UIView+pin.swift in Sources */,
+				01A7901E2A756077009E89AE /* DefaultScreensFactory.swift in Sources */,
+				01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */,
+				01A790412A761C37009E89AE /* SubmitButton.swift in Sources */,
+				01A790712A7B7FE9009E89AE /* CustomAlertReplay.swift in Sources */,
+				01A790382A7598FA009E89AE /* VariantButton.swift in Sources */,
+				01A790602A7961BA009E89AE /* CreatePasswordVC.swift in Sources */,
+				01A7902F2A7569C5009E89AE /* UIView+sizeConstraints.swift in Sources */,
+				01A7906C2A7B77B1009E89AE /* NumbersStackView.swift in Sources */,
+				01A790292A7564D1009E89AE /* StartPageModels.swift in Sources */,
+				01A7903F2A759B80009E89AE /* AppColors.swift in Sources */,
+				01A790232A7560D7009E89AE /* StartPageVC.swift in Sources */,
+				01A7900B2A75426E009E89AE /* BaseVC.swift in Sources */,
+				01A7901B2A75604C009E89AE /* Routable.swift in Sources */,
+				01A7904C2A76E997009E89AE /* WithComputerVC.swift in Sources */,
+				01A7904E2A76E9AF009E89AE /* WithComputerPresenter.swift in Sources */,
+				01A790352A756D3C009E89AE /* prepareForAutolayout.swift in Sources */,
+				01A790582A76EBCF009E89AE /* PlayOnlinePresenter.swift in Sources */,
+				01A790132A755FE0009E89AE /* KeychainService.swift in Sources */,
+				01A790332A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift in Sources */,
+				01A790492A768935009E89AE /* UIControl+interaction.swift in Sources */,
+				01A7905D2A78B8D9009E89AE /* NumberButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		01B337E92A73CE13007EC591 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01B337EA2A73CE13007EC591 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		01B337EE2A73CE14007EC591 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,11 +607,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5H96WHB6AS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Safe_2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -314,11 +634,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5H96WHB6AS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Safe_2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -356,6 +676,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01A790242A7560F9009E89AE /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01A790252A7560F9009E89AE /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01A790242A7560F9009E89AE /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 01B337D82A73CE13007EC591 /* Project object */;
 }
