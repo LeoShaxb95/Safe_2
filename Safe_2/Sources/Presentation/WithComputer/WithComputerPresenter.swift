@@ -9,10 +9,12 @@ import Foundation
 
 protocol WithComputerPresenterProtocol {
     func moveToStartPageScreen()
+    func moveToCreatePasswordScreen()
 }
 
 struct WithComputerOutput {
     var onMoveToStartPage: (() -> Void)!
+    var onMoveCreatePasswordPage: (() -> Void)!
 }
 
 final class WithComputerPresenter {
@@ -28,5 +30,9 @@ final class WithComputerPresenter {
 extension WithComputerPresenter: WithComputerPresenterProtocol {
     func moveToStartPageScreen() {
         output.onMoveToStartPage()
+    }
+    
+    func moveToCreatePasswordScreen() {
+        output.onMoveCreatePasswordPage()
     }
 }

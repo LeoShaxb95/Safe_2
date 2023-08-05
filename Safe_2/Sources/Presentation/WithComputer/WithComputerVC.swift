@@ -536,7 +536,7 @@ final class WithComputerVC: BaseVC {
     func timeConfigs() {
         switch diffType {
         case 0:
-            usersTime = 10
+            usersTime = 300
             computersTime = 180
         case 1:
             usersTime = 360
@@ -593,52 +593,11 @@ final class WithComputerVC: BaseVC {
         case .lose:
             view.backgroundColor = .red
             errorLabel.backgroundColor = .red
-        default:
-            break
         }
     }
     
     @objc func didTapReplayButton() {
         alertMessageReplay()
-    }
-    
-    func replay() {
-        replayButtonPressed = true
-        gameIsOver = false
-        getStartPosition()
-        configureView()
-        replayButtonPressed = false
-    }
-    
-    func getStartPosition() {
-        passwordArray = []
-        userPasswordArray = []
-        
-        answersCounter = 0
-        compAnswersCounter = 0
-        numberIndex = 0
-        
-        realPass = ""
-        firstX = "_"
-        secondX = "_"
-        thirdX = "_"
-        forthX = "_"
-        leftResultTextView.text = ""
-        rightResultTextView.text = ""
-        errorLabel.text = " "
-        passwordLabel.text = "____"
-        leftResultTextViewText = ""
-        rightResultTextViewText = ""
-        errorLabelText = ""
-        
-        view.backgroundColor = .systemGray5
-        errorLabel.backgroundColor = .systemGray5
-        
-        numbersStackView.unColoringNumberButtons()
-        pickerViewStartPoint()
-        checkButton.isEnabled = true
-        usersTimer.invalidate()
-        computersTimer.invalidate()
     }
     
     func configureView() {
@@ -653,7 +612,7 @@ final class WithComputerVC: BaseVC {
         
         while counter < 4 {
             random = String(Int.random(in: 0...9))
-            if passwordArray.contains(random) == false {
+            if !passwordArray.contains(random) {
                 passwordArray.append(random)
                 counter += 1
             }
@@ -675,7 +634,7 @@ final class WithComputerVC: BaseVC {
         CustomAlertReplay.showAlert(
             on: self, actionTitle: "Yes",
             actionStyle: .default) { [weak self] _ in
-            self?.replay()
+                self?.presenter.moveToCreatePasswordScreen()
         }
     }
     
@@ -737,7 +696,9 @@ final class WithComputerVC: BaseVC {
                 )
                 checkButton.isEnabled = false
                 switchClocks()
-                computersMove()
+                if !gameIsOver {
+                    computersMove()
+                }
             }
         }
     }
