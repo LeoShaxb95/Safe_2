@@ -673,7 +673,6 @@ final class WithComputerVC: BaseVC {
         }
     }
     
-    
     // MARK: - Callbacks
     
     @objc func checkButtonPressed(_ sender: UIButton) {
