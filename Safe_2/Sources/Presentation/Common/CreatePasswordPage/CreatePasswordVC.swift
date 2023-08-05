@@ -285,7 +285,7 @@ final class CreatePasswordVC: BaseVC {
         number1Button.set(height: 70)
         number4Button.set(height: 70)
         number7Button.set(height: 70)
-        number0Button.set(width: 95, height: 70)
+        number0Button.set(width: 100, height: 70)
         resetButton.set(width: 100, height: 55)
         doneButton.set(width: 100, height: 55)
         
