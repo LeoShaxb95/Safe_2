@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>661303079784-m2cak5jo3bojbitn7mql3mnd4gkes5sm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.661303079784-m2cak5jo3bojbitn7mql3mnd4gkes5sm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC37TWGrpvBcVScM5kJntn9JDBhlGWXy1o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>661303079784</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Safe-2</string>
+	<key>PROJECT_ID</key>
+	<string>unlock-the-safe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>unlock-the-safe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:661303079784:ios:49efbd44340429cde59cdd</string>
+</dict>
+</plist>

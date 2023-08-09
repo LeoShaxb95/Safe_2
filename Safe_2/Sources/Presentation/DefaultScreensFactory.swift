@@ -8,6 +8,8 @@
 import UIKit
 
 protocol ScreensFactory {
+    func makeSignIn() -> SignInVC
+    func makeSignUp() -> SignUpVC
     func makeStartPage() -> StartPageVC
     func makeBetsPage() -> BetsPageVC
     func makeGuessOnly() -> GuessOnlyVC
@@ -20,6 +22,70 @@ class DefaultScreensFactory: ScreensFactory {
     public static let shared: ScreensFactory  = DefaultScreensFactory()
     
     private init() {}
+    
+    func makeSignIn() -> SignInVC {
+        var output = SignInOutput()
+        
+        output.onMoveToSignUp = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeSignUp()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        output.onMoveToStartPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeStartPage()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = SignInPresenter(output: output)
+        return SignInVC(presenter: presenter)
+    }
+    
+    func makeSignUp() -> SignUpVC {
+        var output = SignUpOutput()
+        
+        output.onMoveToVerify = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeVerify()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        output.onMoveToPassword = { [weak self] in
+            guard let self else { return }
+            let vc = self.makePassword()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = SignUpPresenter(output: output)
+        return SignUpVC(presenter: presenter)
+    }
+    
+    func makeVerify() -> VerifyVC {
+        var output = VerifyOutput()
+        
+        output.onMoveToPassword = { [weak self] in
+            guard let self else { return }
+            let vc = self.makePassword()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = VerifyPresenter(output: output)
+        return VerifyVC(presenter: presenter)
+    }
+    
+    func makePassword() -> PasswordVC {
+        var output = PasswordOutput()
+        
+        output.onMoveToStartPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeStartPage()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = PasswordPresenter(output: output)
+        return PasswordVC(presenter: presenter)
+    }
     
     func makeStartPage() -> StartPageVC {
         var output = StartPageOutput()
@@ -116,9 +182,5 @@ class DefaultScreensFactory: ScreensFactory {
         let presenter = PlayOnlinePresenter(output: output)
         return PlayOnlineVC(presenter: presenter)
     }
-}
-
-private extension DefaultScreensFactory {
-
 }
 
