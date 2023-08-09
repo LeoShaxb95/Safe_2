@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 private extension SceneDelegate {
     func willConnectToSession(window: UIWindow) {
         window.makeKeyAndVisible()
-        let vc = DefaultScreensFactory.shared.makeStartPage()
+        let vc = DefaultScreensFactory.shared.makeSignIn()
         SceneDelegate.router?.setRoot(module: vc)
     }
 }

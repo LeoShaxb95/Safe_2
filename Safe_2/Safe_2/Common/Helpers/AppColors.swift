@@ -9,6 +9,132 @@ import UIKit
 
 public struct AppColors {
     
+    static var signViewBackground = UIColor(
+        red: 4/255,
+        green: 31/255,
+        blue: 58/255,
+        alpha: 1
+    )
+
+    static var selectedText = UIColor(
+        red: 1,
+        green: 1,
+        blue: 1,
+        alpha: 1
+    )
+
+    static var deselectedText = UIColor(
+        red: 164/255,
+        green: 181/255,
+        blue: 188/255,
+        alpha: 1
+    )
+
+    static var labelColor = UIColor(
+        red: 204/255,
+        green: 219/255,
+        blue: 220/255,
+        alpha: 0.8
+    )
+
+    static var textFieldBackground = UIColor(
+        red: 137/255,
+        green: 170/255,
+        blue: 230/255,
+        alpha: 0.7
+    )
+
+    static var signButtonColor = UIColor(
+        red: 0/255,
+        green: 166/255,
+        blue: 237/255,
+        alpha: 1
+    )
+
+// SignUpWithEmailOrPhoneVC
+
+    static var messageLabelColor = UIColor(
+        red: 128/255,
+        green: 148/255,
+        blue: 158/255,
+        alpha: 1
+    )
+
+    static var verifyCodeColor = UIColor(
+        red: 21/255,
+        green: 68/255,
+        blue: 99/255,
+        alpha: 1
+    )
+
+    static var continueButtonColor = UIColor(
+        red: 36/255,
+        green: 123/255,
+        blue: 160/255,
+        alpha: 1
+    )
+
+    static var desabledButtonColor = UIColor(
+        red: 33/255,
+        green: 95/255,
+        blue: 129/255,
+        alpha: 0.2
+    )
+
+    // SignInOptions VC
+
+    static var withEmailOrPhone = UIColor(
+        red: 21/255,
+        green: 68/255,
+        blue: 99/255,
+        alpha: 1
+    )
+
+    static var withGoogle = UIColor(
+        red: 176/255,
+        green: 61/255,
+        blue: 56/255,
+        alpha: 1
+    )
+
+    static var withFaceBook = UIColor(
+        red: 54/255,
+        green: 89/255,
+        blue: 154/255,
+        alpha: 1
+    )
+
+    static var withApple = UIColor(
+        red: 2/255,
+        green: 19/255,
+        blue: 35/255,
+        alpha: 1
+    )
+
+// Phone Verify VC
+
+    static var codeTextFieldBorderColor = UIColor(
+        red: 110/255,
+        green: 142/255,
+        blue: 196/255,
+        alpha: 1
+    )
+
+    static var codeFillBackgroundColor = UIColor(
+        red: 21/255,
+        green: 68/255,
+        blue: 99/255,
+        alpha: 1
+    )
+
+    static var codeEmptyBackgroundColor = UIColor(
+        red: 16/255,
+        green: 59/255,
+        blue: 89/255,
+        alpha: 1
+    )
+
+    
     static var viewBackground = UIColor(
         red: 255/255,
         green: 255/255,
