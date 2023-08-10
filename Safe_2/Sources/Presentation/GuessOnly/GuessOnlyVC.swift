@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Firebase
 
 final class GuessOnlyVC: BaseVC {
     
@@ -363,13 +364,8 @@ final class GuessOnlyVC: BaseVC {
         
         resultTextView.text = resultTextViewText
         if countOfEquals == 4 {
-            messageLabel.text = "Wow,safe is opened\n Take all money and run out"
-            view.backgroundColor = .green
-            messageLabel.backgroundColor = .green
-            errorLabel.backgroundColor = .green
-            checkButton.isUserInteractionEnabled = false
-            timer.invalidate()
-            // Soon - FiniksCounterViewController.finiksCount += 1000
+            gameOverWith(result: .lose)
+            messageLabel.text = "Hands up!!! You're under arrest"
         }
     }
     
@@ -518,11 +514,47 @@ final class GuessOnlyVC: BaseVC {
     func checkAttempts() {
         attempts -= 1
         if attempts == 0 {
-            view.backgroundColor = .red
+            gameOverWith(result: .lose)
             messageLabel.text = " You have exceeded attempts limit "
         }
     }
     
+    func gameOverWith(result: gameResult) {
+        checkButton.isEnabled = false
+        errorLabel.text = "Password was \(realPass)"
+        errorLabel.textColor = .black
+        timer.invalidate()
+        
+        switch result {
+        case .win:
+            view.backgroundColor = .green
+            messageLabel.backgroundColor = .green
+            errorLabel.backgroundColor = .green
+            changeFiniksCountWith(points: BetsPageVC.possibleWin)
+        case .lose:
+            view.backgroundColor = .red
+            messageLabel.backgroundColor = .red
+            errorLabel.backgroundColor = .red
+            changeFiniksCountWith(points: -(BetsPageVC.currentBet))
+        }
+    }
+    
+    func changeFiniksCountWith(points: Int) {
+        let db = Firestore.firestore()
+        let userId = SignInVC.userId
+
+        let userDocRef = db.collection("users").document(userId)
+
+        userDocRef.updateData([
+            "Points": FieldValue.increment(Int64(points))
+        ]) { error in
+            if let error = error {
+                print("Error updating points: \(error)")
+            } else {
+                print("Points updated successfully")
+            }
+        }
+    }
     
     // MARK: - Callbacks
     

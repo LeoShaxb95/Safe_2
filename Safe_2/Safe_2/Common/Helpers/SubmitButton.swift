@@ -46,9 +46,11 @@ public class SubmitButton: UIButton {
         case .active:
             self.backgroundColor = AppColors.submutButtonEnabledBackground
             self.setTitleColor(AppColors.submutButtonEnabledTitleColor, for: .normal)
+            self.isUserInteractionEnabled = true
         case .inactive:
             self.backgroundColor = AppColors.submutButtonDisabledBackground
             self.setTitleColor(AppColors.submutButtonDisabledTitleColor, for: .normal)
+            self.isUserInteractionEnabled = false
         }
         self.layer.cornerRadius = 16
         self.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)

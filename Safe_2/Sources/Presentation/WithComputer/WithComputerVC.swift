@@ -7,15 +7,11 @@
 
 import UIKit
 import Combine
+import Firebase
 
 final class WithComputerVC: BaseVC {
     
     // MARK: - Properties
-    
-    enum gameResult {
-        case win
-        case lose
-    }
     
     let loopingMargin: Int = 20
     var gameConfigs = GameConfigs()
@@ -590,9 +586,11 @@ final class WithComputerVC: BaseVC {
         case .win:
             view.backgroundColor = .green
             errorLabel.backgroundColor = .green
+            changeFiniksCountWith(points: BetsPageVC.possibleWin)
         case .lose:
             view.backgroundColor = .red
             errorLabel.backgroundColor = .red
+            changeFiniksCountWith(points: -(BetsPageVC.currentBet))
         }
     }
     
@@ -670,6 +668,23 @@ final class WithComputerVC: BaseVC {
     func unColoringNumberButtons() {
         for button in arrayOfNumberButtons {
             button.backgroundColor = .systemGray2
+        }
+    }
+    
+    func changeFiniksCountWith(points: Int) {
+        let db = Firestore.firestore()
+        let userId = SignInVC.userId
+
+        let userDocRef = db.collection("users").document(userId)
+
+        userDocRef.updateData([
+            "Points": FieldValue.increment(Int64(points))
+        ]) { error in
+            if let error = error {
+                print("Error updating points: \(error)")
+            } else {
+                print("Points updated successfully")
+            }
         }
     }
     

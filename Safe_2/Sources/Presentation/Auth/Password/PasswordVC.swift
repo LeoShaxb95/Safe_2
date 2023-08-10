@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Firebase
 import FirebaseAuth
 
 final class PasswordVC: BaseVC {
@@ -372,6 +373,17 @@ final class PasswordVC: BaseVC {
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self ] result, error in
             
+            if let user = result?.user {
+                let userId = user.uid
+                SignInVC.userId = userId
+                
+                self?.createUserDocument(userId: userId, name: "New user", email: email)
+            } else {
+                if let error = error {
+                    print("Registration error: \(error)")
+                }
+            }
+            
             guard let strongSelf = self else {
                 return
             }
@@ -383,6 +395,24 @@ final class PasswordVC: BaseVC {
             self?.presenter.moveToStartPageScreen()
             print("You have signed up")
         })
+    }
+    
+    func createUserDocument(userId: String, name: String, email: String) {
+        let db = Firestore.firestore()
+        let usersCollection = db.collection("users")
+        let initialPoints = 1000
+        
+        usersCollection.document(userId).setData([
+            "Name": name,
+            "Email": email,
+            "Points": initialPoints
+        ]) { error in
+            if let error = error {
+                print("Error creating user document: \(error)")
+            } else {
+                print("User document created successfully")
+            }
+        }
     }
 
     @objc func didTapShowPass() {

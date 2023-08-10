@@ -14,6 +14,7 @@ final class SignInVC: BaseVC {
     // MARK: - Properties
     
     let SCItems = ["Phone number", "Email"]
+    static var userId = ""
     
     // MARK: - Subviews
     
@@ -99,6 +100,7 @@ final class SignInVC: BaseVC {
 
     let emailOrPhoneTextField: UITextField = {
         let v = UITextField()
+        v.text = "testuser@mail.ru"
         v.keyboardType = .emailAddress
         v.textColor = .white
         v.attributedPlaceholder = NSAttributedString(
@@ -124,6 +126,7 @@ final class SignInVC: BaseVC {
     let passwordTextField: UITextField = {
         let v = UITextField()
         v.isSecureTextEntry = true
+        v.text = "Leo-31415"
         v.textColor = .white
         v.attributedPlaceholder = NSAttributedString(
             string: "Password",
@@ -360,6 +363,19 @@ final class SignInVC: BaseVC {
         
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password,
                                         completion: { [weak self ] result, error in
+            
+            if let user = result?.user {
+                // User signed in successfully, get the user's unique ID
+                let userId = user.uid
+                
+                print("Sign-in with userId: \(userId)")
+                SignInVC.userId = userId
+            } else {
+                // Handle sign-in failure
+                if let error = error {
+                    print("Sign-in error: \(error)")
+                }
+            }
             
             guard let strongSelf = self else {
                 return

@@ -18,6 +18,8 @@ final class BetsPageVC: BaseVC {
     var diffButtonsEnabled = true
     var winMultiplier = 50
     var currentSliderValue: Int = 10
+    static var currentBet: Int = 0
+    static var possibleWin: Int = 0
     var myFiniks: Int = 1000
     var currentColor: UIColor = .white
     let step: Float = 10
@@ -96,7 +98,7 @@ final class BetsPageVC: BaseVC {
         let v = UILabel()
         v.numberOfLines = 0
         v.backgroundColor = .white
-        v.text = "10 Finiks"
+        v.text = "0 Finiks"
         v.textColor = .black
         v.textAlignment = .center
         v.font = .systemFont(ofSize: 20, weight: .heavy)
@@ -130,7 +132,7 @@ final class BetsPageVC: BaseVC {
     
     let minValueLabel: UILabel = {
         let v = UILabel()
-        v.text = "10"
+        v.text = "0"
         v.textAlignment = .left
         v.font = .systemFont(ofSize: 20, weight: .heavy)
         
@@ -169,7 +171,7 @@ final class BetsPageVC: BaseVC {
         let v = UILabel()
         v.textAlignment = .center
         v.textColor = .systemGreen
-        v.text = "15"
+        v.text = "0"
         v.font = .systemFont(ofSize: 28, weight: .heavy)
 
         return v
@@ -184,7 +186,7 @@ final class BetsPageVC: BaseVC {
     
     var startButton: SubmitButton = {
         let v = SubmitButton()
-        v.buttonState = .active
+        v.buttonState = .inactive
         v.setTitle("Start", for: .normal)
         
         return v
@@ -309,10 +311,10 @@ final class BetsPageVC: BaseVC {
     // MARK: - other funcs
     
     func setupSlidersValues() {
-        finiksSlider.minimumValue = 10
-        finiksSlider.maximumValue = Float(1400)
-        minValueLabel.text = "\(10)"
-        maxValueLabel.text = "\(1400)"
+        finiksSlider.minimumValue = 0
+        finiksSlider.maximumValue = Float(StartPageVC.pointsCount)
+        minValueLabel.text = "\(0)"
+        maxValueLabel.text = "\(StartPageVC.pointsCount)"
     }
     
     func unColoringButtons() {
@@ -322,7 +324,8 @@ final class BetsPageVC: BaseVC {
     }
     
     func updateFiniksValue() {
-        winFiniksLabel.text = "\(currentSliderValue + (currentSliderValue * winMultiplier / 100))"
+        BetsPageVC.possibleWin = currentSliderValue + currentSliderValue * winMultiplier / 100
+        winFiniksLabel.text = "\(currentSliderValue + currentSliderValue * winMultiplier / 100)"
     }
     
     // MARK: - Callbacks
@@ -331,6 +334,8 @@ final class BetsPageVC: BaseVC {
         let roundedStepValue = Int(round(sender.value / step) * step)
         currentSliderValue = roundedStepValue
         currentFiniksLabel.text = "\(currentSliderValue) Finics"
+        BetsPageVC.currentBet = currentSliderValue
+        startButton.buttonState = currentSliderValue == 0 ? .inactive : .active
         
         updateFiniksValue()
     }
