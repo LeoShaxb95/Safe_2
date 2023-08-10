@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Firebase
 
 final class StartPageVC: BaseVC {
 
@@ -17,6 +18,9 @@ final class StartPageVC: BaseVC {
     var variantButtons: [VariantButton] = []
     var StartButtonEnabled = false
     static var gameStyleIndex = 0
+    static var pointsCount = 0
+    
+    let db = Firestore.firestore()
 
     // MARK: - Subviews
    
@@ -31,7 +35,7 @@ final class StartPageVC: BaseVC {
     
     let finiksCountLabel: UILabel = {
         let v = UILabel()
-        v.text = "1400 Finics"
+        v.text = " Finics"
         v.textAlignment = .center
         v.layer.cornerRadius = 12
         
@@ -123,6 +127,28 @@ final class StartPageVC: BaseVC {
         
         view.backgroundColor = .white
         navigationItem.hidesBackButton = true
+        
+        let usersCollection = db.collection("users")
+        let userId = SignInVC.userId
+        
+        let userDocRef = db.collection("users").document(userId)
+                
+        usersCollection.document(userId).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                // Process data here
+                
+                if let name = data?["Name"] as? String,
+                   let email = data?["Email"] as? String,
+                   let points = data?["Points"] as? Int {
+                    
+                    self.finiksCountLabel.text = "\(points) Finics"
+                    StartPageVC.pointsCount = points
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
 
         setupVariantButtons()
         bind()

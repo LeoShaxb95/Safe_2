@@ -125,16 +125,12 @@ final class SignUpVC: BaseVC {
     }()
 
     let signInButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Sign In", for: .normal)
-        button.setTitleColor(AppColors.signButtonColor, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(
-            self, action: #selector(didTapSignIn),
-            for: .touchUpInside
-        )
+        let v = UIButton()
+        v.setTitle("Sign In", for: .normal)
+        v.setTitleColor(AppColors.signButtonColor, for: .normal)
+        v.titleLabel?.font = .systemFont(ofSize: 16)
 
-        return button
+        return v
     }()
     
     private let presenter: SignUpPresenterProtocol
@@ -181,6 +177,14 @@ final class SignUpVC: BaseVC {
                 
                 SignUpVC.emailAddress = email
                 self.presenter.moveToPassword()
+            }
+            .store(in: &cancellables)
+        
+        signInButton
+            .publisher(for: .touchUpInside)
+            .sink{ [weak self] _ in
+                guard let self else { return }
+                self.dismiss(animated: false)
             }
             .store(in: &cancellables)
     
@@ -249,10 +253,6 @@ final class SignUpVC: BaseVC {
 
     @objc func didTapForgotButton() {
         //Gloxd moranayir
-    }
-
-    @objc func didTapSignIn() {
-        dismiss(animated: false)
     }
 
     @objc func didChangeSelectedSegment(_ sender: UISegmentedControl) {
