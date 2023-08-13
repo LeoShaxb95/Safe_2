@@ -537,17 +537,16 @@ final class PlayOnlineVC: BaseVC {
     func timeConfigs() {
         switch diffType {
         case 0:
-            usersTime = 180
-            computersTime = 180
+            usersTime = 540
+            computersTime = 540
         case 1:
             usersTime = 360
-            computersTime = 110
+            computersTime = 360
         case 2:
             usersTime = 180
-            computersTime = 110
+            computersTime = 180
         default:
-            usersTime = 60
-            computersTime = 110
+            break
         }
         usersTimeLabel.text = self.timeString(time: usersTime)
         computersTimeLabel.text = self.timeString(time: computersTime)

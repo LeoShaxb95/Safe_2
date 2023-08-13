@@ -14,7 +14,8 @@ final class SignUpVC: BaseVC {
     
     let SCItems = ["Phone number", "Email"]
     static var emailAddress: String = ""
-    
+    static var userName: String = ""
+
     // MARK: - Subviews
     
     lazy var signInTypesSegmentedControl: UISegmentedControl = {
@@ -92,6 +93,30 @@ final class SignUpVC: BaseVC {
 
         return v
     }()
+    
+    lazy var userNameStackView: UIStackView = {
+        let v = UIStackView(arrangedSubviews: [
+            userNameTextField,
+            createLineView()
+        ])
+        v.axis = .vertical
+        v.distribution = .fill
+        v.alignment = .fill
+        
+        return v
+    }()
+
+    let userNameTextField: UITextField = {
+        let v = UITextField()
+        v.keyboardType = .emailAddress
+        v.textColor = .white
+        v.attributedPlaceholder = NSAttributedString(
+            string: "Username",
+            attributes: [NSAttributedString.Key.foregroundColor: AppColors.labelColor]
+        )
+
+        return v
+    }()
 
     let continueButton: UIButton = {
         let v = UIButton()
@@ -126,6 +151,7 @@ final class SignUpVC: BaseVC {
 
     let signInButton: UIButton = {
         let v = UIButton()
+        v.isUserInteractionEnabled = true
         v.setTitle("Sign In", for: .normal)
         v.setTitleColor(AppColors.signButtonColor, for: .normal)
         v.titleLabel?.font = .systemFont(ofSize: 16)
@@ -172,10 +198,14 @@ final class SignUpVC: BaseVC {
         continueButton
             .publisher(for: .touchUpInside)
             .sink{ [weak self] _ in
-                guard let self, let email = emailOrPhoneTextField.text,
-                !email.isEmpty else { return }
+                guard let self,
+                      let email = emailOrPhoneTextField.text, !email.isEmpty,
+                        let userName = userNameTextField.text, !userName.isEmpty
+                else { return }
                 
                 SignUpVC.emailAddress = email
+                SignUpVC.userName = userName
+                
                 self.presenter.moveToPassword()
             }
             .store(in: &cancellables)
@@ -198,6 +228,7 @@ final class SignUpVC: BaseVC {
             signInTypesSegmentedControl,
             linesStackView,
             emailOrPhoneStackView,
+            userNameStackView,
             continueButton,
             signInStackView
         ])
@@ -209,6 +240,7 @@ final class SignUpVC: BaseVC {
         signInTypesSegmentedControl.pin(edges: [.leading, .trailing], to: view, inset: 15)
         linesStackView.pin(edges: [.leading, .trailing], to: view, inset: 15)
         emailOrPhoneTextField.pin(edges: [.leading, .trailing], to: view, inset: 60)
+        userNameStackView.pin(edges: [.leading, .trailing], to: view, inset: 60)
         continueButton.pin(edges: [.leading, .trailing], to: view, inset: 60)
         signInStackView.pin(edges: [.leading, .trailing], to: view, inset: 75)
 
@@ -218,14 +250,17 @@ final class SignUpVC: BaseVC {
         rightLineView.set(height: 1.5)
         continueButton.set(height: 50)
         emailOrPhoneTextField.set(height: 44)
+        userNameTextField.set(height: 44)
 
         NSLayoutConstraint.activate([
             linesStackView.topAnchor.constraint(
                 equalTo: signInTypesSegmentedControl.bottomAnchor, constant: 5),
-            emailOrPhoneTextField.topAnchor.constraint(
+            emailOrPhoneStackView.topAnchor.constraint(
                 equalTo: linesStackView.bottomAnchor, constant: 100),
+            userNameStackView.topAnchor.constraint(
+                equalTo: emailOrPhoneStackView.bottomAnchor, constant: 20),
             continueButton.topAnchor.constraint(
-                equalTo: emailOrPhoneTextField.bottomAnchor, constant: 60),
+                equalTo: userNameStackView.bottomAnchor, constant: 60),
             signInStackView.topAnchor.constraint(
                 equalTo: continueButton.bottomAnchor, constant: 10),
         ])

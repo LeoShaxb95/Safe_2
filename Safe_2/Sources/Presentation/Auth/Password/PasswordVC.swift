@@ -18,6 +18,7 @@ final class PasswordVC: BaseVC {
     var allConfigsPass2 = false
     var showPasswordIsOn = false
     var showPassword2IsOn = false
+    var newName = ""
     
     // MARK: - Subviews
     
@@ -369,6 +370,7 @@ final class PasswordVC: BaseVC {
 
     @objc func didTapSignUp() {
         let email = SignUpVC.emailAddress
+        let name = SignUpVC.userName
         guard let password = passTextField.text, !password.isEmpty else { return }
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self ] result, error in
@@ -377,7 +379,15 @@ final class PasswordVC: BaseVC {
                 let userId = user.uid
                 SignInVC.userId = userId
                 
-                self?.createUserDocument(userId: userId, name: "New user", email: email)
+                self?.createUserDocument(
+                    userId: userId,
+                    name: name,
+                    email: email,
+                    points: 1000,
+                    level: 1,
+                    status: "novice",
+                    wins: 0,
+                    losses: 0)
             } else {
                 if let error = error {
                     print("Registration error: \(error)")
@@ -397,7 +407,16 @@ final class PasswordVC: BaseVC {
         })
     }
     
-    func createUserDocument(userId: String, name: String, email: String) {
+    func createUserDocument(
+        userId: String,
+        name: String,
+        email: String,
+        points: Int,
+        level: Int,
+        status: String,
+        wins: Int,
+        losses: Int
+    ) {
         let db = Firestore.firestore()
         let usersCollection = db.collection("users")
         let initialPoints = 1000
@@ -405,7 +424,11 @@ final class PasswordVC: BaseVC {
         usersCollection.document(userId).setData([
             "Name": name,
             "Email": email,
-            "Points": initialPoints
+            "Points": initialPoints,
+            "Level": level,
+            "Status": status,
+            "Wins": wins,
+            "Losses": losses,
         ]) { error in
             if let error = error {
                 print("Error creating user document: \(error)")

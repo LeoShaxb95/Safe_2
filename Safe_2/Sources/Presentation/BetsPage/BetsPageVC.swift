@@ -192,13 +192,15 @@ final class BetsPageVC: BaseVC {
         return v
     }()
     
+    private let finiks: Int
     private let presenter: BetsPagePresenterProtocol
     var cancellables = Set<AnyCancellable>()
     
     // MARK: - Init
 
-    init(presenter: BetsPagePresenterProtocol) {
+    init(presenter: BetsPagePresenterProtocol, finiks: Int) {
         self.presenter = presenter
+        self.finiks = finiks
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -312,9 +314,9 @@ final class BetsPageVC: BaseVC {
     
     func setupSlidersValues() {
         finiksSlider.minimumValue = 0
-        finiksSlider.maximumValue = Float(StartPageVC.pointsCount)
+        finiksSlider.maximumValue = Float(finiks)
         minValueLabel.text = "\(0)"
-        maxValueLabel.text = "\(StartPageVC.pointsCount)"
+        maxValueLabel.text = "\(finiks)"
     }
     
     func unColoringButtons() {
