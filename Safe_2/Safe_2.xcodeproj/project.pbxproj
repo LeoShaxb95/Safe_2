@@ -61,6 +61,13 @@
 		01A841202A818562009B59F8 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8411F2A818562009B59F8 /* PasswordVC.swift */; };
 		01A841222A818576009B59F8 /* PasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841212A818576009B59F8 /* PasswordPresenter.swift */; };
 		01A841252A84AE4F009B59F8 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841242A84AE4F009B59F8 /* GameResult.swift */; };
+		01A841272A8527A2009B59F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841262A8527A2009B59F8 /* ProfileVC.swift */; };
+		01A8412A2A8527D4009B59F8 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841292A8527D4009B59F8 /* ProfilePresenter.swift */; };
+		01A8412D2A854A47009B59F8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8412C2A854A47009B59F8 /* ProfileTableViewCell.swift */; };
+		01A841302A85507A009B59F8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8412F2A85507A009B59F8 /* UserModel.swift */; };
+		01A841322A861EC4009B59F8 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841312A861EC4009B59F8 /* ProfileDataSource.swift */; };
+		01A841342A862F65009B59F8 /* UITableView+dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841332A862F65009B59F8 /* UITableView+dequeue.swift */; };
+		01A841362A8632D8009B59F8 /* UITableView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A841352A8632D8009B59F8 /* UITableView+register.swift */; };
 		01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E32A73CE13007EC591 /* AppDelegate.swift */; };
 		01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E52A73CE13007EC591 /* SceneDelegate.swift */; };
 		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
@@ -114,6 +121,13 @@
 		01A8411F2A818562009B59F8 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
 		01A841212A818576009B59F8 /* PasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordPresenter.swift; sourceTree = "<group>"; };
 		01A841242A84AE4F009B59F8 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		01A841262A8527A2009B59F8 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		01A841292A8527D4009B59F8 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		01A8412C2A854A47009B59F8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		01A8412F2A85507A009B59F8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		01A841312A861EC4009B59F8 /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
+		01A841332A862F65009B59F8 /* UITableView+dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+dequeue.swift"; sourceTree = "<group>"; };
+		01A841352A8632D8009B59F8 /* UITableView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+register.swift"; sourceTree = "<group>"; };
 		01B337E02A73CE13007EC591 /* Safe_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B337E32A73CE13007EC591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B337E52A73CE13007EC591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,9 +216,11 @@
 			isa = PBXGroup;
 			children = (
 				01A7901D2A756077009E89AE /* DefaultScreensFactory.swift */,
-				01A8410E2A811B59009B59F8 /* Auth */,
+				01A8412E2A855059009B59F8 /* Models */,
 				01A790692A7A9425009E89AE /* Common */,
+				01A8410E2A811B59009B59F8 /* Auth */,
 				01A7901F2A7560B2009E89AE /* StartPage */,
+				01A841282A8527B6009B59F8 /* Profile */,
 				01A790432A76864B009E89AE /* BetsPage */,
 				01A7904F2A76EB27009E89AE /* GuessOnly */,
 				01A7904A2A76E967009E89AE /* WithComputer */,
@@ -249,6 +265,8 @@
 				01A790322A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift */,
 				01A790342A756D3C009E89AE /* prepareForAutolayout.swift */,
 				01A790482A768935009E89AE /* UIControl+interaction.swift */,
+				01A841332A862F65009B59F8 /* UITableView+dequeue.swift */,
+				01A841352A8632D8009B59F8 /* UITableView+register.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -411,6 +429,33 @@
 			path = Password;
 			sourceTree = "<group>";
 		};
+		01A841282A8527B6009B59F8 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				01A8412B2A854A1B009B59F8 /* View */,
+				01A841292A8527D4009B59F8 /* ProfilePresenter.swift */,
+				01A841262A8527A2009B59F8 /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		01A8412B2A854A1B009B59F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A8412C2A854A47009B59F8 /* ProfileTableViewCell.swift */,
+				01A841312A861EC4009B59F8 /* ProfileDataSource.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01A8412E2A855059009B59F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				01A8412F2A85507A009B59F8 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		01B337D72A73CE13007EC591 = {
 			isa = PBXGroup;
 			children = (
@@ -526,6 +571,7 @@
 			files = (
 				01A790452A76866B009E89AE /* BetsPageVC.swift in Sources */,
 				01A790562A76EBC1009E89AE /* PlayOnlineVC.swift in Sources */,
+				01A841322A861EC4009B59F8 /* ProfileDataSource.swift in Sources */,
 				01A790312A756BA4009E89AE /* UIView+addSubviews.swift in Sources */,
 				01A790192A756039009E89AE /* Presentable.swift in Sources */,
 				01B337E42A73CE13007EC591 /* AppDelegate.swift in Sources */,
@@ -541,14 +587,17 @@
 				01A790532A76EB51009E89AE /* GuessOnlyPresenter.swift in Sources */,
 				01A841222A818576009B59F8 /* PasswordPresenter.swift in Sources */,
 				01A790682A7A650D009E89AE /* UIButton+flash.swift in Sources */,
+				01A8412A2A8527D4009B59F8 /* ProfilePresenter.swift in Sources */,
 				01A841202A818562009B59F8 /* PasswordVC.swift in Sources */,
 				01A790512A76EB43009E89AE /* GuessOnlyVC.swift in Sources */,
 				01A790102A755FBA009E89AE /* Dependencies.swift in Sources */,
 				01A841252A84AE4F009B59F8 /* GameResult.swift in Sources */,
 				01A7902C2A75691C009E89AE /* UIView+pin.swift in Sources */,
+				01A8412D2A854A47009B59F8 /* ProfileTableViewCell.swift in Sources */,
 				01A841182A812284009B59F8 /* SignUpPresenter.swift in Sources */,
 				01A7901E2A756077009E89AE /* DefaultScreensFactory.swift in Sources */,
 				01A7905B2A78B501009E89AE /* AlertButton.swift in Sources */,
+				01A841272A8527A2009B59F8 /* ProfileVC.swift in Sources */,
 				01A790412A761C37009E89AE /* SubmitButton.swift in Sources */,
 				01A790712A7B7FE9009E89AE /* CustomAlertReplay.swift in Sources */,
 				01A790382A7598FA009E89AE /* VariantButton.swift in Sources */,
@@ -562,6 +611,8 @@
 				01A790232A7560D7009E89AE /* StartPageVC.swift in Sources */,
 				01A7900B2A75426E009E89AE /* BaseVC.swift in Sources */,
 				01A7901B2A75604C009E89AE /* Routable.swift in Sources */,
+				01A841302A85507A009B59F8 /* UserModel.swift in Sources */,
+				01A841362A8632D8009B59F8 /* UITableView+register.swift in Sources */,
 				01A7904C2A76E997009E89AE /* WithComputerVC.swift in Sources */,
 				01A7904E2A76E9AF009E89AE /* WithComputerPresenter.swift in Sources */,
 				01A790352A756D3C009E89AE /* prepareForAutolayout.swift in Sources */,
@@ -569,6 +620,7 @@
 				01A841162A812278009B59F8 /* SignUpVC.swift in Sources */,
 				01A790132A755FE0009E89AE /* KeychainService.swift in Sources */,
 				01A790332A756BD8009E89AE /* UIStackView+addArrangedSubviews.swift in Sources */,
+				01A841342A862F65009B59F8 /* UITableView+dequeue.swift in Sources */,
 				01A790492A768935009E89AE /* UIControl+interaction.swift in Sources */,
 				01A7905D2A78B8D9009E89AE /* NumberButton.swift in Sources */,
 			);

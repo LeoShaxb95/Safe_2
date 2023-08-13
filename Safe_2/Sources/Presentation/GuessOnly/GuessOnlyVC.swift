@@ -22,6 +22,9 @@ final class GuessOnlyVC: BaseVC {
     var answersCounter: Int = 0
     var numberIndex: Int = 0
     var diffType: Int = 0
+    var winsCount = 0
+    var lossesCount = 0
+    var pointsCount = 0
     
     var firstX: String = "_"
     var secondX: String = "_"
@@ -220,12 +223,12 @@ final class GuessOnlyVC: BaseVC {
         return v
     }()
     
-    private let presenter: GuessOnlyPresenterProtocol
+    private let presenter: GuessOnlyPresenterRouterProtocol
     var cancellables = Set<AnyCancellable>()
     
     // MARK: - Init
     
-    init(presenter: GuessOnlyPresenterProtocol) {
+    init(presenter: GuessOnlyPresenterRouterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -483,9 +486,7 @@ final class GuessOnlyVC: BaseVC {
             time = 180
             attempts = 6
         default:
-            time = 60
-            attempts = 12
-            
+            break            
         }
         timeLabel.text = self.timeString(time: time)
     }
@@ -530,23 +531,33 @@ final class GuessOnlyVC: BaseVC {
             view.backgroundColor = .green
             messageLabel.backgroundColor = .green
             errorLabel.backgroundColor = .green
-            changeFiniksCountWith(points: BetsPageVC.possibleWin)
+            updateUserInfoFor(
+                points: pointsCount + BetsPageVC.possibleWin,
+                wins: winsCount + 1,
+                losses: lossesCount
+            )
         case .lose:
             view.backgroundColor = .red
             messageLabel.backgroundColor = .red
             errorLabel.backgroundColor = .red
-            changeFiniksCountWith(points: -(BetsPageVC.currentBet))
+            updateUserInfoFor(
+                points: pointsCount - BetsPageVC.currentBet,
+                wins: winsCount,
+                losses: lossesCount + 1
+            )
         }
     }
     
-    func changeFiniksCountWith(points: Int) {
+    func updateUserInfoFor(points: Int, wins: Int, losses: Int) {
         let db = Firestore.firestore()
         let userId = SignInVC.userId
 
         let userDocRef = db.collection("users").document(userId)
 
         userDocRef.updateData([
-            "Points": FieldValue.increment(Int64(points))
+            "Points": FieldValue.increment(Int64(points)),
+            "Wins": FieldValue.increment(Int64(wins)),
+            "Losses": FieldValue.increment(Int64(losses))
         ]) { error in
             if let error = error {
                 print("Error updating points: \(error)")

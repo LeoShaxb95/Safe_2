@@ -11,7 +11,8 @@ protocol ScreensFactory {
     func makeSignIn() -> SignInVC
     func makeSignUp() -> SignUpVC
     func makeStartPage() -> StartPageVC
-    func makeBetsPage() -> BetsPageVC
+    func makeProfile(model: UserModel) -> ProfileVC
+    func makeBetsPage(finiks: Int) -> BetsPageVC
     func makeGuessOnly() -> GuessOnlyVC
     func makeWithComputer() -> WithComputerVC
     func makePlayOnline() -> PlayOnlineVC
@@ -90,9 +91,15 @@ class DefaultScreensFactory: ScreensFactory {
     func makeStartPage() -> StartPageVC {
         var output = StartPageOutput()
         
-        output.onMoveToBetsPage = { [weak self] in
+        output.onMoveToBetsPage = { [weak self] finiks in
             guard let self else { return }
-            let vc = self.makeBetsPage()
+            let vc = self.makeBetsPage(finiks: finiks)
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        output.onMoveToProfile = { [weak self] model in
+            guard let self else { return }
+            let vc = self.makeProfile(model: model)
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
@@ -100,7 +107,13 @@ class DefaultScreensFactory: ScreensFactory {
         return StartPageVC(presenter: presenter)
     }
     
-    func makeBetsPage() -> BetsPageVC {
+    func makeProfile(model: UserModel) -> ProfileVC {
+        
+        let presenter = ProfilePresenter()
+        return ProfileVC(presenter: presenter, model: model)
+    }
+    
+    func makeBetsPage(finiks: Int) -> BetsPageVC {
         var output = BetsPageOutput()
         
         output.onMoveToGuessOnly = { [weak self] in
@@ -116,7 +129,7 @@ class DefaultScreensFactory: ScreensFactory {
         }
         
         let presenter = BetsPagePresenter(output: output)
-        return BetsPageVC(presenter: presenter)
+        return BetsPageVC(presenter: presenter, finiks: finiks)
     }
     
     func makeGuessOnly() -> GuessOnlyVC {

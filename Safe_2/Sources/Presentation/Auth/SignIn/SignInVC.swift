@@ -100,7 +100,7 @@ final class SignInVC: BaseVC {
 
     let emailOrPhoneTextField: UITextField = {
         let v = UITextField()
-        v.text = "testuser@mail.ru"
+        v.text = "letstryagain@mail.ru"
         v.keyboardType = .emailAddress
         v.textColor = .white
         v.attributedPlaceholder = NSAttributedString(

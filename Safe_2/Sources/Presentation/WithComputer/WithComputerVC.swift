@@ -51,6 +51,9 @@ final class WithComputerVC: BaseVC {
     var numberIndex: Int = 0
     var diffType: Int = 0
     var computerThinkingTime = 0
+    var winsCount = 0
+    var lossesCount = 0
+    var pointsCount = 0
     var usersTime = 0 {
         didSet {
             usersTimeLabel.text = "\(usersTime)"
@@ -59,6 +62,20 @@ final class WithComputerVC: BaseVC {
     var computersTime = 0 {
         didSet {
             computersTimeLabel.text = "\(computersTime)"
+        }
+    }
+    
+    private var userModel: UserModel? {
+        didSet {
+            DispatchQueue.main.async {
+                guard let points = self.userModel?.points,
+                      let wins = self.userModel?.winCount,
+                      let losses = self.userModel?.loseCount
+                else { return }
+                        
+                self.getUserInfoFor(
+                    points:  points, wins: wins, losses: losses)
+            }
         }
     }
     
@@ -340,12 +357,12 @@ final class WithComputerVC: BaseVC {
         return v
     }()
     
-    private let presenter: WithComputerPresenterProtocol
+    private let presenter: WithComputerPresenter
     var cancellables = Set<AnyCancellable>()
     
     // MARK: - Init
     
-    init(presenter: WithComputerPresenterProtocol) {
+    init(presenter: WithComputerPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -532,17 +549,16 @@ final class WithComputerVC: BaseVC {
     func timeConfigs() {
         switch diffType {
         case 0:
-            usersTime = 300
-            computersTime = 180
+            usersTime = 540
+            computersTime = 540
         case 1:
             usersTime = 360
-            computersTime = 110
+            computersTime = 360
         case 2:
             usersTime = 180
-            computersTime = 110
+            computersTime = 180
         default:
-            usersTime = 60
-            computersTime = 110
+            break
         }
         usersTimeLabel.text = self.timeString(time: usersTime)
         computersTimeLabel.text = self.timeString(time: computersTime)
@@ -586,11 +602,19 @@ final class WithComputerVC: BaseVC {
         case .win:
             view.backgroundColor = .green
             errorLabel.backgroundColor = .green
-            changeFiniksCountWith(points: BetsPageVC.possibleWin)
+            updateUserInfoFor(
+                points: pointsCount + BetsPageVC.possibleWin,
+                wins: winsCount + 1,
+                losses: lossesCount
+            )
         case .lose:
             view.backgroundColor = .red
             errorLabel.backgroundColor = .red
-            changeFiniksCountWith(points: -(BetsPageVC.currentBet))
+            updateUserInfoFor(
+                points: pointsCount - BetsPageVC.currentBet,
+                wins: winsCount,
+                losses: lossesCount + 1
+            )
         }
     }
     
@@ -671,14 +695,28 @@ final class WithComputerVC: BaseVC {
         }
     }
     
-    func changeFiniksCountWith(points: Int) {
+    private func fetchUserData() {
+        presenter.getUser { [weak self] user in
+            self?.userModel = user
+        }
+    }
+    
+    func getUserInfoFor(points: Int, wins: Int, losses: Int) {
+        self.pointsCount = points
+        self.winsCount = wins
+        self.lossesCount = losses
+    }
+    
+    func updateUserInfoFor(points: Int, wins: Int, losses: Int) {
         let db = Firestore.firestore()
         let userId = SignInVC.userId
 
         let userDocRef = db.collection("users").document(userId)
 
         userDocRef.updateData([
-            "Points": FieldValue.increment(Int64(points))
+            "Points": FieldValue.increment(Int64(points)),
+            "Wins": FieldValue.increment(Int64(wins)),
+            "Losses": FieldValue.increment(Int64(losses))
         ]) { error in
             if let error = error {
                 print("Error updating points: \(error)")
