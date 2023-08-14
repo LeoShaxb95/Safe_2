@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Firebase
 
 final class ProfileVC: BaseVC {
     
@@ -82,7 +83,7 @@ final class ProfileVC: BaseVC {
         
         view.backgroundColor = .white
         setupNavRightBarWith(item: .edit)
-            updateInfoWith(data: data)
+            getInfoFor(data: data)
 
         bind()
     }
@@ -145,7 +146,7 @@ final class ProfileVC: BaseVC {
             target: self, action: #selector(editButtonTapped(_:)))
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
-            target: self, action: #selector(editButtonTapped(_:)))
+            target: self, action: #selector(doneButtonTapped(_:)))
         
         switch item {
         case .edit:
@@ -155,12 +156,28 @@ final class ProfileVC: BaseVC {
         }
     }
     
-    func updateInfoWith(data: UserModel?) {
+    func getInfoFor(data: UserModel?) {
         if let data = data {
             self.nameTextField.text = data.name
         }
         
         // Soon: change image with url
+    }
+    
+    func updateUserInfoFor(name: String) {
+        let db = Firestore.firestore()
+        let userId = SignInVC.userId
+        let userDocRef = db.collection("users").document(userId)
+        
+        userDocRef.updateData([
+            "Name": name
+        ]) { error in
+            if let error = error {
+                print("Error updating points: \(error)")
+            } else {
+                print("Points updated successfully")
+            }
+        }
     }
     
     // MARK: - Callbacks
@@ -173,6 +190,14 @@ final class ProfileVC: BaseVC {
         isInEditMode = !isInEditMode
         setupNavRightBarWith(item: isInEditMode ? .done : .edit)
         nameTextField.isUserInteractionEnabled = true
+    }
+    
+    @objc func doneButtonTapped(_ sender: UIBarButtonItem) {
+        isInEditMode = !isInEditMode
+        setupNavRightBarWith(item: isInEditMode ? .done : .edit)
+        nameTextField.isUserInteractionEnabled = false
+        guard let name = nameTextField.text else { return }
+        updateUserInfoFor(name: name)
     }
 }
 

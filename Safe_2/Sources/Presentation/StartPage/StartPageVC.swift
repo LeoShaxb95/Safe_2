@@ -39,7 +39,7 @@ final class StartPageVC: BaseVC {
     
     let finiksCountLabel: UILabel = {
         let v = UILabel()
-        v.text = " Finics"
+        v.text = " "
         v.textAlignment = .center
         v.layer.cornerRadius = 12
         
