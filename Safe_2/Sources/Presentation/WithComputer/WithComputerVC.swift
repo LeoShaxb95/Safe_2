@@ -51,9 +51,6 @@ final class WithComputerVC: BaseVC {
     var numberIndex: Int = 0
     var diffType: Int = 0
     var computerThinkingTime = 0
-    var winsCount = 0
-    var lossesCount = 0
-    var pointsCount = 0
     var usersTime = 0 {
         didSet {
             usersTimeLabel.text = "\(usersTime)"
@@ -62,20 +59,6 @@ final class WithComputerVC: BaseVC {
     var computersTime = 0 {
         didSet {
             computersTimeLabel.text = "\(computersTime)"
-        }
-    }
-    
-    private var userModel: UserModel? {
-        didSet {
-            DispatchQueue.main.async {
-                guard let points = self.userModel?.points,
-                      let wins = self.userModel?.winCount,
-                      let losses = self.userModel?.loseCount
-                else { return }
-                        
-                self.getUserInfoFor(
-                    points:  points, wins: wins, losses: losses)
-            }
         }
     }
     
@@ -603,17 +586,17 @@ final class WithComputerVC: BaseVC {
             view.backgroundColor = .green
             errorLabel.backgroundColor = .green
             updateUserInfoFor(
-                points: pointsCount + BetsPageVC.possibleWin,
-                wins: winsCount + 1,
-                losses: lossesCount
+                points: BetsPageVC.possibleWin - BetsPageVC.currentBet,
+                wins: 1,
+                losses: 0
             )
         case .lose:
             view.backgroundColor = .red
             errorLabel.backgroundColor = .red
             updateUserInfoFor(
-                points: pointsCount - BetsPageVC.currentBet,
-                wins: winsCount,
-                losses: lossesCount + 1
+                points: -BetsPageVC.currentBet,
+                wins: 0,
+                losses: 1
             )
         }
     }
@@ -648,7 +631,13 @@ final class WithComputerVC: BaseVC {
         CustomAlertHome.showAlert(
             on: self, actionTitle: "Yes",
             actionStyle: .default) { [weak self] _ in
-            self?.presenter.moveToStartPageScreen()
+                if self?.gameIsOver == false {
+                    self?.updateUserInfoFor(
+                        points: -BetsPageVC.currentBet,
+                        wins: 0, losses: 1
+                    )
+                }
+                self?.presenter.moveToStartPageScreen()
         }
     }
     
@@ -693,18 +682,6 @@ final class WithComputerVC: BaseVC {
         for button in arrayOfNumberButtons {
             button.backgroundColor = .systemGray2
         }
-    }
-    
-    private func fetchUserData() {
-        presenter.getUser { [weak self] user in
-            self?.userModel = user
-        }
-    }
-    
-    func getUserInfoFor(points: Int, wins: Int, losses: Int) {
-        self.pointsCount = points
-        self.winsCount = wins
-        self.lossesCount = losses
     }
     
     func updateUserInfoFor(points: Int, wins: Int, losses: Int) {

@@ -16,15 +16,14 @@ final class GuessOnlyVC: BaseVC {
     var gameConfigs = GameConfigs()
     var difficulty: GameConfigs.Difficulty?
     
+    var gameIsOver = false
+    
     let loopingMargin: Int = 20
     var minutes: Int = 0
     var seconds: Int = 0
     var answersCounter: Int = 0
     var numberIndex: Int = 0
     var diffType: Int = 0
-    var winsCount = 0
-    var lossesCount = 0
-    var pointsCount = 0
     
     var firstX: String = "_"
     var secondX: String = "_"
@@ -367,7 +366,7 @@ final class GuessOnlyVC: BaseVC {
         
         resultTextView.text = resultTextViewText
         if countOfEquals == 4 {
-            gameOverWith(result: .lose)
+            gameOverWith(result: .win)
             messageLabel.text = "Hands up!!! You're under arrest"
         }
     }
@@ -408,14 +407,7 @@ final class GuessOnlyVC: BaseVC {
         time -= 1
         timeLabel.text = self.timeString(time: time)
         if time == 0 {
-            timer.invalidate()
-            view.backgroundColor = .red
-            messageLabel.backgroundColor = .red
-            errorLabel.backgroundColor = .red
-            errorLabel.text = "Password was \(realPass)"
-            errorLabel.textColor = .black
-            checkButton.isUserInteractionEnabled = false
-            messageLabel.text = "Hands up!!! You're under arrest"
+            gameOverWith(result: .lose)
         }
     }
     
@@ -499,7 +491,13 @@ final class GuessOnlyVC: BaseVC {
         CustomAlertHome.showAlert(
             on: self, actionTitle: "Yes",
             actionStyle: .default) { [weak self] _ in
-            self?.presenter.moveToStartPageScreen()
+                if self?.gameIsOver == false {
+                    self?.updateUserInfoFor(
+                        points: -BetsPageVC.currentBet,
+                        wins: 0, losses: 1
+                    )
+                }
+                self?.presenter.moveToStartPageScreen()
         }
     }
     
@@ -521,6 +519,7 @@ final class GuessOnlyVC: BaseVC {
     }
     
     func gameOverWith(result: gameResult) {
+        gameIsOver = true
         checkButton.isEnabled = false
         errorLabel.text = "Password was \(realPass)"
         errorLabel.textColor = .black
@@ -532,18 +531,16 @@ final class GuessOnlyVC: BaseVC {
             messageLabel.backgroundColor = .green
             errorLabel.backgroundColor = .green
             updateUserInfoFor(
-                points: pointsCount + BetsPageVC.possibleWin,
-                wins: winsCount + 1,
-                losses: lossesCount
+                points: BetsPageVC.possibleWin - BetsPageVC.currentBet,
+                wins: 1, losses: 0
             )
         case .lose:
             view.backgroundColor = .red
             messageLabel.backgroundColor = .red
             errorLabel.backgroundColor = .red
             updateUserInfoFor(
-                points: pointsCount - BetsPageVC.currentBet,
-                wins: winsCount,
-                losses: lossesCount + 1
+                points: -BetsPageVC.currentBet,
+                wins: 0, losses: 1
             )
         }
     }
