@@ -66,6 +66,7 @@ final class PasswordVC: BaseVC {
 
     let passTextField: UITextField = {
         let textField = UITextField()
+        textField.text = "Leo-31415"
         textField.keyboardType = .default
         textField.isSecureTextEntry = true
         textField.textColor = .white
@@ -231,6 +232,7 @@ final class PasswordVC: BaseVC {
 
     let repeatPassTextField: UITextField = {
         let textField = UITextField()
+        textField.text = "Leo-31415"
         textField.keyboardType = .default
         textField.isSecureTextEntry = true
         textField.textColor = .white
@@ -387,7 +389,8 @@ final class PasswordVC: BaseVC {
                     level: 1,
                     status: "novice",
                     wins: 0,
-                    losses: 0)
+                    losses: 0,
+                    profilePictureURL: "profilePicture/Url")
             } else {
                 if let error = error {
                     print("Registration error: \(error)")
@@ -415,7 +418,8 @@ final class PasswordVC: BaseVC {
         level: Int,
         status: String,
         wins: Int,
-        losses: Int
+        losses: Int,
+        profilePictureURL: String
     ) {
         let db = Firestore.firestore()
         let usersCollection = db.collection("users")
@@ -429,6 +433,7 @@ final class PasswordVC: BaseVC {
             "Status": status,
             "Wins": wins,
             "Losses": losses,
+            "ProfilePictureURL": profilePictureURL
         ]) { error in
             if let error = error {
                 print("Error creating user document: \(error)")

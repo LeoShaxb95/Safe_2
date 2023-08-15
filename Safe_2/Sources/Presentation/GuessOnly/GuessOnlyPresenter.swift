@@ -48,7 +48,7 @@ extension GuessOnlyPresenter: GuessOnlyPresenterStoreProtocol {
                    let winCount = data?["Wins"] as? Int,
                    let lossesCount = data?["Losses"] as? Int {
                     
-                    let userModel = UserModel(userId: userId, level: nil, status: nil, name: nil, email: nil, points: points, winCount: winCount, loseCount: lossesCount)
+                    let userModel = UserModel(userId: userId, level: nil, status: nil, name: nil, email: nil, points: points, winCount: winCount, loseCount: lossesCount, profilePictureURL: nil)
                     completion(userModel)
                 } else {
                     completion(nil)

@@ -19,15 +19,19 @@
 	<key>STORAGE_BUCKET</key>
 	<string>unlock-the-safe.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your photo library to select and upload profile pictures.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to select and upload profile pictures.</string>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:661303079784:ios:49efbd44340429cde59cdd</string>
 </dict>

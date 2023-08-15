@@ -64,9 +64,10 @@ extension StartPagePresenter: StartPagePresenterStoreProtocol {
                    let email = data?["Email"] as? String,
                    let points = data?["Points"] as? Int,
                    let winCount = data?["Wins"] as? Int,
-                   let lossesCount = data?["Losses"] as? Int {
+                   let lossesCount = data?["Losses"] as? Int,
+                   let profilePictureUrl = data?["ProfilePictureURL"] as? String {
                     
-                    let userModel = UserModel(userId: userId, level: level, status: status, name: name, email: email, points: points, winCount: winCount, loseCount: lossesCount)
+                    let userModel = UserModel(userId: userId, level: level, status: status, name: name, email: email, points: points, winCount: winCount, loseCount: lossesCount, profilePictureURL: profilePictureUrl)
                     completion(userModel)
                 } else {
                     completion(nil)
