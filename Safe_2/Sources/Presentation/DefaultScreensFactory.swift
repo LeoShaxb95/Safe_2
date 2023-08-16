@@ -108,8 +108,15 @@ class DefaultScreensFactory: ScreensFactory {
     }
     
     func makeProfile(model: UserModel) -> ProfileVC {
+        var output = ProfileOutput()
         
-        let presenter = ProfilePresenter()
+        output.onMoveToSignIn = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeSignIn()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        let presenter = ProfilePresenter(output: output)
         return ProfileVC(presenter: presenter, model: model)
     }
     
