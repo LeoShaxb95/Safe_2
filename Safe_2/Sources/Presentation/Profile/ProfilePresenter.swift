@@ -7,8 +7,26 @@
 
 import Foundation
 
-protocol ProfilePresenterProtocol {}
+protocol ProfilePresenterProtocol {
+    func moveToSignInScreen()
+}
 
-final class ProfilePresenter {}
+struct ProfileOutput {
+    var onMoveToSignIn: (() -> Void)!
+}
 
-extension ProfilePresenter: ProfilePresenterProtocol {}
+final class ProfilePresenter {
+    var output: ProfileOutput
+    
+    //MARK: - Init
+    
+    init(output: ProfileOutput) {
+        self.output = output
+    }
+}
+
+extension ProfilePresenter: ProfilePresenterProtocol {
+    func moveToSignInScreen() {
+        output.onMoveToSignIn()
+    }
+}

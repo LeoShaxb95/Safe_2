@@ -16,6 +16,7 @@ struct UserModel {
     public var points: Int?
     public var winCount: Int?
     public var loseCount: Int?
+    public var profilePictureURL: String?
 }
 
 public enum Status {
