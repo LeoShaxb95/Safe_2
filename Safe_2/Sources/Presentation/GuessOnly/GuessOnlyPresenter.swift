@@ -7,6 +7,7 @@
 
 protocol GuessOnlyPresenterRouterProtocol {
     func moveToStartPageScreen()
+    func moveToBetsPageScreen()
 }
 
 protocol GuessOnlyPresenterStoreProtocol {
@@ -15,6 +16,7 @@ protocol GuessOnlyPresenterStoreProtocol {
 
 struct GuessOnlyOutput {
     var onMoveToStartPage: (() -> Void)!
+    var onMoveToBetsPage: (() -> Void)!
 }
 
 final class GuessOnlyPresenter {
@@ -30,6 +32,10 @@ final class GuessOnlyPresenter {
 extension GuessOnlyPresenter: GuessOnlyPresenterRouterProtocol {
     func moveToStartPageScreen() {
         output.onMoveToStartPage()
+    }
+    
+    func moveToBetsPageScreen() {
+        output.onMoveToBetsPage()
     }
 }
 

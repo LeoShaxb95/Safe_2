@@ -12,7 +12,7 @@ let db = Firestore.firestore()
 var userModel: UserModel?
 
 protocol StartPagePresenterRouterProtocol {
-    func moveToBetsPageScreen(_ finiks: Int)
+    func moveToBetsPageScreen()
     func moveToProfileScreen(_ model: UserModel)
 }
 
@@ -21,7 +21,7 @@ protocol StartPagePresenterStoreProtocol {
 }
 
 struct StartPageOutput {
-    var onMoveToBetsPage: ((Int) -> Void)!
+    var onMoveToBetsPage: (() -> Void)!
     var onMoveToProfile: ((UserModel) -> Void)!
 }
 
@@ -37,8 +37,8 @@ final class StartPagePresenter {
 
 extension StartPagePresenter: StartPagePresenterRouterProtocol {
     
-    func moveToBetsPageScreen(_ finiks: Int) {
-        output.onMoveToBetsPage(finiks)
+    func moveToBetsPageScreen() {
+        output.onMoveToBetsPage()
     }
     
     func moveToProfileScreen(_ model: UserModel) {

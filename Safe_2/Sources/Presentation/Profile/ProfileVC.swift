@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import Firebase
 import FirebaseStorage
+import SwiftKeychainWrapper
 
 final class ProfileVC: BaseVC {
     
@@ -52,7 +53,8 @@ final class ProfileVC: BaseVC {
     
     let nameTextField: UITextField = {
         let v = UITextField()
-        v.text = "Levon Shaxbazyan"
+        v.text = "User"
+        v.autocorrectionType = .no
         v.font = .systemFont(ofSize: 16, weight: .regular)
         v.textAlignment = .left
         v.backgroundColor = .clear
@@ -216,10 +218,9 @@ final class ProfileVC: BaseVC {
     }
     
     private func setProfilePictureIfNeeded() {
-        guard let data = data,
-              let url = data.profilePictureURL
-        else { return }
+        if !hasProfilePicture {
             profileImageView.image = UIImage(named: "profileImage")
+        }
     }
     
     // MARK: - other funcs
@@ -344,12 +345,12 @@ final class ProfileVC: BaseVC {
         
         isInEditMode = !isInEditMode
         setupNavRightBarWith(item: isInEditMode ? .done : .edit)
-        updateUser(info: name, infoType: .name)
         nameTextField.font = .systemFont(ofSize: 16, weight: .regular)
         nameTextField.resignFirstResponder()
         nameTextField.isUserInteractionEnabled = false
         profileImageView.isUserInteractionEnabled = false
         editPhotoButton.isHidden = true
+        updateUser(info: name, infoType: .name)
     }
     
     @objc func editPhotoButtonTapped() {
@@ -363,6 +364,8 @@ final class ProfileVC: BaseVC {
         } catch let error {
             print("Error signing out: \(error.localizedDescription)")
         }
+        KeychainWrapper.standard.set("", forKey: "userPassword")
+        KeychainWrapper.standard.set("", forKey: "userEmail")
     }
     
     @objc func deleteAccountButtonTapped() {
@@ -375,11 +378,11 @@ final class ProfileVC: BaseVC {
             if let error = error {
                 print("Error deleting account: \(error.localizedDescription)")
             } else {
-                // Account deleted successfully, you might want to perform additional cleanup
-                // For example, deleting the user's data from Firestore
                 self.deleteUserDataFromFirestore(userId: userId)
             }
         }
+        KeychainWrapper.standard.set("", forKey: "userPassword")
+        KeychainWrapper.standard.set("", forKey: "userEmail")
     }
 
     private func deleteUserDataFromFirestore(userId: String) {

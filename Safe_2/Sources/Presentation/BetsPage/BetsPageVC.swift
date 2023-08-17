@@ -20,9 +20,16 @@ final class BetsPageVC: BaseVC {
     var currentSliderValue: Int = 10
     static var currentBet: Int = 0
     static var possibleWin: Int = 0
-    var myFiniks: Int = 1000
     var currentColor: UIColor = .white
     let step: Float = 10
+    
+    private var userModel: UserModel? {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateUIWithUserData()
+            }
+        }
+    }
 
     // MARK: - Subviews
    
@@ -192,15 +199,13 @@ final class BetsPageVC: BaseVC {
         return v
     }()
     
-    private let finiks: Int
-    private let presenter: BetsPagePresenterProtocol
+    private let presenter: BetsPagePresenter
     var cancellables = Set<AnyCancellable>()
     
     // MARK: - Init
 
-    init(presenter: BetsPagePresenterProtocol, finiks: Int) {
+    init(presenter: BetsPagePresenter) {
         self.presenter = presenter
-        self.finiks = finiks
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -216,10 +221,17 @@ final class BetsPageVC: BaseVC {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        setupSlidersValues()
         setupSubviews()
-        
+        fetchUserData()
+
         bind()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchUserData()
     }
 
     // MARK: - Bind
@@ -312,11 +324,24 @@ final class BetsPageVC: BaseVC {
     
     // MARK: - other funcs
     
-    func setupSlidersValues() {
-        finiksSlider.minimumValue = 0
-        finiksSlider.maximumValue = Float(finiks)
-        minValueLabel.text = "\(0)"
-        maxValueLabel.text = "\(finiks)"
+    private func fetchUserData() {
+        presenter.getUser { [weak self] user in
+            self?.userModel = user
+            
+            DispatchQueue.main.async {
+                self?.updateUIWithUserData()
+            }
+        }
+    }
+    
+    private func updateUIWithUserData() {
+        if let user = userModel,
+           let points = user.points {
+            finiksSlider.minimumValue = 0
+            finiksSlider.maximumValue = Float(points)
+            minValueLabel.text = "\(0)"
+            maxValueLabel.text = "\(points)"
+        }
     }
     
     func unColoringButtons() {
