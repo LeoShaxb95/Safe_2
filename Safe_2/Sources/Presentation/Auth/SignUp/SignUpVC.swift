@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SwiftKeychainWrapper
 
 final class SignUpVC: BaseVC {
     
@@ -84,6 +85,7 @@ final class SignUpVC: BaseVC {
 
     let emailOrPhoneTextField: UITextField = {
         let v = UITextField()
+        v.autocorrectionType = .no
         v.keyboardType = .emailAddress
         v.textColor = .white
         v.attributedPlaceholder = NSAttributedString(
@@ -108,6 +110,7 @@ final class SignUpVC: BaseVC {
 
     let userNameTextField: UITextField = {
         let v = UITextField()
+        v.autocorrectionType = .no
         v.keyboardType = .emailAddress
         v.textColor = .white
         v.attributedPlaceholder = NSAttributedString(
@@ -206,6 +209,7 @@ final class SignUpVC: BaseVC {
                 SignUpVC.emailAddress = email
                 SignUpVC.userName = userName
                 
+                KeychainWrapper.standard.set(email, forKey: "userEmail")
                 self.presenter.moveToPassword()
             }
             .store(in: &cancellables)

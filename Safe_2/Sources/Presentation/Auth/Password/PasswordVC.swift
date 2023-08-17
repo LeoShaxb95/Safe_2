@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import Firebase
 import FirebaseAuth
+import SwiftKeychainWrapper
 
 final class PasswordVC: BaseVC {
     
@@ -374,6 +375,7 @@ final class PasswordVC: BaseVC {
         let email = SignUpVC.emailAddress
         let name = SignUpVC.userName
         guard let password = passTextField.text, !password.isEmpty else { return }
+        KeychainWrapper.standard.set(password, forKey: "userPassword")
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self ] result, error in
             

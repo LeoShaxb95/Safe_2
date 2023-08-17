@@ -24,15 +24,37 @@ final class StartPageVC: BaseVC {
     // MARK: - Subviews
     
     // Game style
-    private lazy var profilImageView: UIImageView = {
+
+    private lazy var profileImageView: UIImageView = {
         let tap = UITapGestureRecognizer(target: self,
             action: #selector(didTapProfileImageView(gestureRecognizer:)))
         let v = UIImageView()
-        v.sizeToFit()
         v.addGestureRecognizer(tap)
-        v.backgroundColor = .yellow
         v.isUserInteractionEnabled = true
+        v.contentMode = .scaleToFill
         v.image = UIImage(named: "profileImage")
+        
+        return v
+    }()
+    
+    let levelLabel: UILabel = {
+        let v = UILabel()
+        v.text = "1"
+        v.textAlignment = .center
+        v.clipsToBounds = true
+        v.layer.borderColor = UIColor.gray.cgColor
+        v.layer.borderWidth = 1
+        v.backgroundColor = .black
+        v.textColor = .white
+
+        return v
+    }()
+    
+    let nameLabel: UILabel = {
+        let v = UILabel()
+        v.text = "User"
+        v.font = .systemFont(ofSize: 15, weight: .bold)
+        v.textAlignment = .center
         
         return v
     }()
@@ -40,8 +62,8 @@ final class StartPageVC: BaseVC {
     let finiksCountLabel: UILabel = {
         let v = UILabel()
         v.text = " "
+        v.font = .systemFont(ofSize: 14, weight: .regular)
         v.textAlignment = .center
-        v.layer.cornerRadius = 12
         
         return v
     }()
@@ -145,25 +167,24 @@ final class StartPageVC: BaseVC {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchUserData()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         getStartConfigs()
     }
     
-    private func updateUIWithUserData() {
-        if let user = userModel,
-             let points = user.points {
-            finiksCountLabel.text = "\(points) Finiks"
-        }
-    }
-    
-    private func fetchUserData() {
-        presenter.getUser { [weak self] user in
-            self?.userModel = user
-            
-            DispatchQueue.main.async {
-                self?.updateUIWithUserData()
-            }
-        }
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        levelLabel.layer.cornerRadius = levelLabel.frame.width / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.gray.cgColor
+        profileImageView.layer.borderWidth = 2
     }
     
     // MARK: - Bind
@@ -172,12 +193,8 @@ final class StartPageVC: BaseVC {
         StartButton
             .publisher(for: .touchUpInside)
             .sink { [weak self] _ in
-                guard let self,
-                        let model = userModel,
-                          let points = model.points
-                            else { return }
-                
-                self.presenter.moveToBetsPageScreen(points)
+                guard let self else { return }
+                self.presenter.moveToBetsPageScreen()
             }
             .store(in: &cancellables)
     }
@@ -187,7 +204,9 @@ final class StartPageVC: BaseVC {
     public override func setupSubviews() {
         
         view.addSubviews([
-            profilImageView,
+            profileImageView,
+            levelLabel,
+            nameLabel,
             finiksCountLabel,
             gameStyleLabel,
             GameStyleStackView,
@@ -204,22 +223,31 @@ final class StartPageVC: BaseVC {
     
     public override func setupAutolayout() {
         
-        profilImageView.pin(edges: [.top], to: view, inset: 20, toSafeArea: true)
-        profilImageView.pin(edges: [.leading], to: view, inset: 25)
+        profileImageView.pin(edges: [.top], to: view, inset: 0, toSafeArea: true)
+        nameLabel.pin(edges: [.top], to: view, inset: 15, toSafeArea: true)
+        profileImageView.pin(edges: [.leading], to: view, inset: 25)
         gameStyleLabel.pin(edges: [.leading, .trailing], to: view, inset: 55)
         GameStyleStackView.pin(edges: [.leading, .trailing], to: view, inset: 55)
         StartButton.pin(edges: [.leading, .trailing], to: view, inset: 25)
         StartButton.pin(edges: [.bottom], to: view, inset: 25, toSafeArea: true)
         
-        profilImageView.set(width: 80, height: 80)
+        profileImageView.set(width: 90, height: 90)
+        levelLabel.set(width: 25, height: 25)
+        nameLabel.set(height: 20)
         finiksCountLabel.set(height: 20)
         StartButton.set(height: 52)
         
         NSLayoutConstraint.activate([
+            levelLabel.topAnchor.constraint(
+                equalTo: profileImageView.topAnchor),
+            levelLabel.trailingAnchor.constraint(
+                equalTo: profileImageView.trailingAnchor),
+            nameLabel.leadingAnchor.constraint(
+                equalTo: profileImageView.trailingAnchor, constant: 20),
             finiksCountLabel.topAnchor.constraint(
-                equalTo: profilImageView.bottomAnchor, constant: 10),
-            finiksCountLabel.centerXAnchor.constraint(
-                equalTo: profilImageView.centerXAnchor),
+                equalTo: nameLabel.bottomAnchor, constant: 10),
+            finiksCountLabel.leadingAnchor.constraint(
+                equalTo: profileImageView.trailingAnchor, constant: 20),
             gameStyleLabel.bottomAnchor.constraint(
                 equalTo: GameStyleStackView.topAnchor, constant: -30),
             GameStyleStackView.centerYAnchor.constraint(
@@ -233,6 +261,42 @@ final class StartPageVC: BaseVC {
     }
     
     // MARK: - other funcs
+    
+    private func updateUIWithUserData() {
+        if let user = userModel,
+             let url = user.profilePictureURL,
+               let name = user.name,
+                 let points = user.points {
+            
+            setupProfileImageWith(url: url)
+              nameLabel.text = name
+                finiksCountLabel.text = "\(points) Finiks"
+        }
+    }
+    
+    private func setupProfileImageWith(url: String?) {
+        if let imageURL = url, let url = URL(string: imageURL) {
+            let urlRequest = URLRequest(url: url)
+            
+            URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.profileImageView.image = image
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+    private func fetchUserData() {
+        presenter.getUser { [weak self] user in
+            self?.userModel = user
+            
+            DispatchQueue.main.async {
+                self?.updateUIWithUserData()
+            }
+        }
+    }
     
     private func getStartConfigs() {
         gameStyleLabel.text = "Game style"

@@ -645,7 +645,7 @@ final class WithComputerVC: BaseVC {
         CustomAlertReplay.showAlert(
             on: self, actionTitle: "Yes",
             actionStyle: .default) { [weak self] _ in
-                self?.presenter.moveToCreatePasswordScreen()
+                self?.presenter.moveToBetsPageScreen()
         }
     }
     

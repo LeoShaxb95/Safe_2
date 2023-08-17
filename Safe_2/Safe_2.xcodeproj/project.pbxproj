@@ -72,6 +72,7 @@
 		01B337E62A73CE13007EC591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B337E52A73CE13007EC591 /* SceneDelegate.swift */; };
 		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
 		01B337F02A73CE14007EC591 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EE2A73CE14007EC591 /* LaunchScreen.storyboard */; };
+		01EA4CF02A8D087F00381E63 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 01EA4CEF2A8D087F00381E63 /* SwiftKeychainWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +150,7 @@
 				016DAE8C2A8A273A00D53F57 /* FirebaseStorage in Frameworks */,
 				016DAE822A8A273A00D53F57 /* FirebaseAuth in Frameworks */,
 				016DAE8A2A8A273A00D53F57 /* FirebaseFirestoreSwift in Frameworks */,
+				01EA4CF02A8D087F00381E63 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +511,7 @@
 				016DAE892A8A273A00D53F57 /* FirebaseFirestoreSwift */,
 				016DAE8B2A8A273A00D53F57 /* FirebaseStorage */,
 				016DAE8D2A8A273A00D53F57 /* FirebaseStorageCombine-Community */,
+				01EA4CEF2A8D087F00381E63 /* SwiftKeychainWrapper */,
 			);
 			productName = Safe_2;
 			productReference = 01B337E02A73CE13007EC591 /* Safe_2.app */;
@@ -541,6 +544,7 @@
 			packageReferences = (
 				01A790242A7560F9009E89AE /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				016DAE802A8A273A00D53F57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				01EA4CEE2A8D087F00381E63 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 01B337E12A73CE13007EC591 /* Products */;
 			projectDirPath = "";
@@ -848,6 +852,14 @@
 				minimumVersion = 20.0.0;
 			};
 		};
+		01EA4CEE2A8D087F00381E63 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -890,6 +902,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01A790242A7560F9009E89AE /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		01EA4CEF2A8D087F00381E63 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01EA4CEE2A8D087F00381E63 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

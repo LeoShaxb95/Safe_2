@@ -416,8 +416,10 @@ final class GuessOnlyVC: BaseVC {
     }
     
     func replay() {
-        getStartPosition()
-        configureView()
+        
+        self.presenter.moveToBetsPageScreen()
+//        getStartPosition()
+//        configureView()
     }
     
     func getStartPosition() {
@@ -534,6 +536,7 @@ final class GuessOnlyVC: BaseVC {
                 points: BetsPageVC.possibleWin - BetsPageVC.currentBet,
                 wins: 1, losses: 0
             )
+            
         case .lose:
             view.backgroundColor = .red
             messageLabel.backgroundColor = .red

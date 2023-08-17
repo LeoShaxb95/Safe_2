@@ -9,7 +9,7 @@ import Foundation
 
 protocol WithComputerPresenterRouterProtocol {
     func moveToStartPageScreen()
-    func moveToCreatePasswordScreen()
+    func moveToBetsPageScreen()
 }
 
 protocol WithComputerPresenterStoreProtocol {
@@ -18,7 +18,7 @@ protocol WithComputerPresenterStoreProtocol {
 
 struct WithComputerOutput {
     var onMoveToStartPage: (() -> Void)!
-    var onMoveCreatePasswordPage: (() -> Void)!
+    var onMoveToBetsPage: (() -> Void)!
 }
 
 final class WithComputerPresenter {
@@ -36,8 +36,8 @@ extension WithComputerPresenter: WithComputerPresenterRouterProtocol {
         output.onMoveToStartPage()
     }
     
-    func moveToCreatePasswordScreen() {
-        output.onMoveCreatePasswordPage()
+    func moveToBetsPageScreen() {
+        output.onMoveToBetsPage()
     }
 }
 

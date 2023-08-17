@@ -12,7 +12,7 @@ protocol ScreensFactory {
     func makeSignUp() -> SignUpVC
     func makeStartPage() -> StartPageVC
     func makeProfile(model: UserModel) -> ProfileVC
-    func makeBetsPage(finiks: Int) -> BetsPageVC
+    func makeBetsPage() -> BetsPageVC
     func makeGuessOnly() -> GuessOnlyVC
     func makeWithComputer() -> WithComputerVC
     func makePlayOnline() -> PlayOnlineVC
@@ -91,9 +91,9 @@ class DefaultScreensFactory: ScreensFactory {
     func makeStartPage() -> StartPageVC {
         var output = StartPageOutput()
         
-        output.onMoveToBetsPage = { [weak self] finiks in
+        output.onMoveToBetsPage = { [weak self] in
             guard let self else { return }
-            let vc = self.makeBetsPage(finiks: finiks)
+            let vc = self.makeBetsPage()
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
@@ -120,7 +120,7 @@ class DefaultScreensFactory: ScreensFactory {
         return ProfileVC(presenter: presenter, model: model)
     }
     
-    func makeBetsPage(finiks: Int) -> BetsPageVC {
+    func makeBetsPage() -> BetsPageVC {
         var output = BetsPageOutput()
         
         output.onMoveToGuessOnly = { [weak self] in
@@ -136,7 +136,7 @@ class DefaultScreensFactory: ScreensFactory {
         }
         
         let presenter = BetsPagePresenter(output: output)
-        return BetsPageVC(presenter: presenter, finiks: finiks)
+        return BetsPageVC(presenter: presenter)
     }
     
     func makeGuessOnly() -> GuessOnlyVC {
@@ -145,6 +145,12 @@ class DefaultScreensFactory: ScreensFactory {
         output.onMoveToStartPage = { [weak self] in
             guard let self else { return }
             let vc = self.makeStartPage()
+            SceneDelegate.router?.push(module: vc, animated: true)
+        }
+        
+        output.onMoveToBetsPage = { [weak self] in
+            guard let self else { return }
+            let vc = self.makeBetsPage()
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
@@ -180,9 +186,9 @@ class DefaultScreensFactory: ScreensFactory {
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
-        output.onMoveCreatePasswordPage = { [weak self] in
+        output.onMoveToBetsPage = { [weak self] in
             guard let self else { return }
-            let vc = self.makeCreatePassword()
+            let vc = self.makeBetsPage()
             SceneDelegate.router?.push(module: vc, animated: true)
         }
         
