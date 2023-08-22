@@ -73,6 +73,12 @@
 		01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EC2A73CE14007EC591 /* Images.xcassets */; };
 		01B337F02A73CE14007EC591 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B337EE2A73CE14007EC591 /* LaunchScreen.storyboard */; };
 		01EA4CF02A8D087F00381E63 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 01EA4CEF2A8D087F00381E63 /* SwiftKeychainWrapper */; };
+		01EA4D392A9371E100381E63 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 01EA4D382A9371E100381E63 /* BottomSheet */; };
+		01EA4D3E2A93946C00381E63 /* CallingCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01EA4D3D2A93946C00381E63 /* CallingCodes.plist */; };
+		01EA4D432A9399E700381E63 /* CountryBottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4D422A9399E700381E63 /* CountryBottomSheetVC.swift */; };
+		01EA4D452A9399FF00381E63 /* CountryBottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4D442A9399FF00381E63 /* CountryBottomSheetPresenter.swift */; };
+		01EA4D482A93AF0700381E63 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4D472A93AF0700381E63 /* CountryTableViewCell.swift */; };
+		01EA4D4D2A93B23F00381E63 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4D4C2A93B23F00381E63 /* CountryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +141,11 @@
 		01B337EC2A73CE14007EC591 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01B337EF2A73CE14007EC591 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01B337F12A73CE14007EC591 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01EA4D3D2A93946C00381E63 /* CallingCodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CallingCodes.plist; sourceTree = "<group>"; };
+		01EA4D422A9399E700381E63 /* CountryBottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryBottomSheetVC.swift; sourceTree = "<group>"; };
+		01EA4D442A9399FF00381E63 /* CountryBottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryBottomSheetPresenter.swift; sourceTree = "<group>"; };
+		01EA4D472A93AF0700381E63 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
+		01EA4D4C2A93B23F00381E63 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +158,7 @@
 				016DAE8E2A8A273A00D53F57 /* FirebaseStorageCombine-Community in Frameworks */,
 				01A790262A7560F9009E89AE /* KeychainSwift in Frameworks */,
 				016DAE882A8A273A00D53F57 /* FirebaseFirestore in Frameworks */,
+				01EA4D392A9371E100381E63 /* BottomSheet in Frameworks */,
 				016DAE8C2A8A273A00D53F57 /* FirebaseStorage in Frameworks */,
 				016DAE822A8A273A00D53F57 /* FirebaseAuth in Frameworks */,
 				016DAE8A2A8A273A00D53F57 /* FirebaseFirestoreSwift in Frameworks */,
@@ -407,6 +419,7 @@
 		01A841102A811B77009B59F8 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				01EA4D412A93976300381E63 /* CountryBottomSheet */,
 				01A841172A812284009B59F8 /* SignUpPresenter.swift */,
 				01A841152A812278009B59F8 /* SignUpVC.swift */,
 			);
@@ -482,8 +495,36 @@
 				01A7900A2A75426E009E89AE /* BaseVC.swift */,
 				01B337F12A73CE14007EC591 /* Info.plist */,
 				01A840FB2A80F2B0009B59F8 /* GoogleService-Info.plist */,
+				01EA4D3D2A93946C00381E63 /* CallingCodes.plist */,
 			);
 			path = Safe_2;
+			sourceTree = "<group>";
+		};
+		01EA4D412A93976300381E63 /* CountryBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				01EA4D4B2A93B21F00381E63 /* CountryModel */,
+				01EA4D462A93AE8900381E63 /* View */,
+				01EA4D442A9399FF00381E63 /* CountryBottomSheetPresenter.swift */,
+				01EA4D422A9399E700381E63 /* CountryBottomSheetVC.swift */,
+			);
+			path = CountryBottomSheet;
+			sourceTree = "<group>";
+		};
+		01EA4D462A93AE8900381E63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01EA4D472A93AF0700381E63 /* CountryTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01EA4D4B2A93B21F00381E63 /* CountryModel */ = {
+			isa = PBXGroup;
+			children = (
+				01EA4D4C2A93B23F00381E63 /* CountryModel.swift */,
+			);
+			path = CountryModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +553,7 @@
 				016DAE8B2A8A273A00D53F57 /* FirebaseStorage */,
 				016DAE8D2A8A273A00D53F57 /* FirebaseStorageCombine-Community */,
 				01EA4CEF2A8D087F00381E63 /* SwiftKeychainWrapper */,
+				01EA4D382A9371E100381E63 /* BottomSheet */,
 			);
 			productName = Safe_2;
 			productReference = 01B337E02A73CE13007EC591 /* Safe_2.app */;
@@ -545,6 +587,7 @@
 				01A790242A7560F9009E89AE /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				016DAE802A8A273A00D53F57 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				01EA4CEE2A8D087F00381E63 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				01EA4D372A9371E100381E63 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 01B337E12A73CE13007EC591 /* Products */;
 			projectDirPath = "";
@@ -560,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01EA4D3E2A93946C00381E63 /* CallingCodes.plist in Resources */,
 				01B337F02A73CE14007EC591 /* LaunchScreen.storyboard in Resources */,
 				01B337ED2A73CE14007EC591 /* Images.xcassets in Resources */,
 				01A840FC2A80F2B0009B59F8 /* GoogleService-Info.plist in Resources */,
@@ -582,6 +626,7 @@
 				01A841122A811BB1009B59F8 /* SignInVC.swift in Sources */,
 				01A7906F2A7B7F03009E89AE /* CustomAlertHome.swift in Sources */,
 				01A790162A756012009E89AE /* DefaultRouter.swift in Sources */,
+				01EA4D482A93AF0700381E63 /* CountryTableViewCell.swift in Sources */,
 				01A790622A7961CA009E89AE /* CreatePasswordPresenter.swift in Sources */,
 				01A8411B2A8183CA009B59F8 /* VerifyVC.swift in Sources */,
 				01A790212A7560C7009E89AE /* StartPagePresenter.swift in Sources */,
@@ -607,9 +652,12 @@
 				01A790382A7598FA009E89AE /* VariantButton.swift in Sources */,
 				01A8411D2A81841A009B59F8 /* VerifyPresenter.swift in Sources */,
 				01A790602A7961BA009E89AE /* CreatePasswordVC.swift in Sources */,
+				01EA4D452A9399FF00381E63 /* CountryBottomSheetPresenter.swift in Sources */,
 				01A841142A811BBF009B59F8 /* SignInPresenter.swift in Sources */,
 				01A7902F2A7569C5009E89AE /* UIView+sizeConstraints.swift in Sources */,
 				01A7906C2A7B77B1009E89AE /* NumbersStackView.swift in Sources */,
+				01EA4D432A9399E700381E63 /* CountryBottomSheetVC.swift in Sources */,
+				01EA4D4D2A93B23F00381E63 /* CountryModel.swift in Sources */,
 				01A790292A7564D1009E89AE /* StartPageModels.swift in Sources */,
 				01A7903F2A759B80009E89AE /* AppColors.swift in Sources */,
 				01A790232A7560D7009E89AE /* StartPageVC.swift in Sources */,
@@ -860,6 +908,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		01EA4D372A9371E100381E63 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joomcode/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -907,6 +963,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01EA4CEE2A8D087F00381E63 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		01EA4D382A9371E100381E63 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01EA4D372A9371E100381E63 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

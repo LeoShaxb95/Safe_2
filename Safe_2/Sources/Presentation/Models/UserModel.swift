@@ -13,6 +13,8 @@ struct UserModel {
     public var status: String?
     public var name: String?
     public var email: String?
+    public var flag: String?
+    public var country: String?
     public var points: Int?
     public var winCount: Int?
     public var loseCount: Int?

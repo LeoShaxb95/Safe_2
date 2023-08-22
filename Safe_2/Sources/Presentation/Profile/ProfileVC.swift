@@ -63,6 +63,12 @@ final class ProfileVC: BaseVC {
         return v
     }()
     
+    lazy var flagImageView: UIImageView = {
+        let v = UIImageView()
+                
+        return v
+    }()
+    
     private lazy var tableView: UITableView = {
         let v = UITableView()
         v.separatorStyle = .none
@@ -169,6 +175,7 @@ final class ProfileVC: BaseVC {
             profileImageView,
             editPhotoButton,
             nameTextField,
+            flagImageView,
             tableView,
             signOutButton,
             deleteAccountButton
@@ -189,6 +196,7 @@ final class ProfileVC: BaseVC {
 
         profileImageView.set(width: 120, height: 120)
         editPhotoButton.set(width: 120, height: 20)
+        flagImageView.set(width: 30, height: 15)
         signOutButton.set(height: 30)
         deleteAccountButton.set(height: 30)
 
@@ -202,7 +210,11 @@ final class ProfileVC: BaseVC {
             nameTextField.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor, constant: 30),
             nameTextField.centerYAnchor.constraint(
-                equalTo: profileImageView.centerYAnchor),
+                equalTo: profileImageView.centerYAnchor, constant: 15),
+            flagImageView.leadingAnchor.constraint(
+                equalTo: nameTextField.leadingAnchor),
+            flagImageView.centerYAnchor.constraint(
+                equalTo: profileImageView.centerYAnchor, constant: -15),
             tableView.leadingAnchor.constraint(
                 equalTo: profileImageView.centerXAnchor, constant: -30),
             signOutButton.bottomAnchor.constraint(
@@ -248,8 +260,11 @@ final class ProfileVC: BaseVC {
     }
     
     private func getInfoFor(data: UserModel?) {
-        if let data = data {
+        if let data = data,
+            let flag = data.flag {
+            
             self.nameTextField.text = data.name
+            self.flagImageView.image = UIImage(named: flag)
             self.setupProfileImageWith(url: data.profilePictureURL)
         }
     }
