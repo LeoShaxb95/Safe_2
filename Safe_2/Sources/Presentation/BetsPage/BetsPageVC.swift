@@ -184,13 +184,6 @@ final class BetsPageVC: BaseVC {
         return v
     }()
     
-    let winFinixImage: UIImageView = {
-        let v = UIImageView()
-        v.image = UIImage.init(named: "finics")
-        
-        return v
-    }()
-    
     var startButton: SubmitButton = {
         let v = SubmitButton()
         v.buttonState = .inactive
@@ -272,8 +265,7 @@ final class BetsPageVC: BaseVC {
         ])
         
         winFinixStackView.addArrangedSubviews([
-            winFiniksLabel,
-            winFinixImage
+            winFiniksLabel
         ])
     }
 
@@ -284,12 +276,13 @@ final class BetsPageVC: BaseVC {
         finiksSlider.pin(edges: [.leading, .trailing], to: view, inset: 35)
         minMaxValuesStackView.pin(edges: [.leading, .trailing], to: view, inset: 35)
         winMessageLabel.pin(edges: [.leading, .trailing], to: view, inset: 35)
+        winFinixStackView.pin(edges: [.leading, .trailing], to: view, inset: 35)
 
         startButton.pin(edges: [.leading, .trailing], to: view, inset: 25)
         startButton.pin(edges: [.bottom], to: view, inset: 25, toSafeArea: true)
 
         DifficultyStackView.set(width: 200)
-        winFinixStackView.set(width: 100, height: 30)
+        winFinixStackView.set(height: 30)
         startButton.set(height: 48)
         easyButton.set(height: 35)
         normalButton.set(height: 35)

@@ -374,6 +374,11 @@ final class PasswordVC: BaseVC {
     @objc func didTapSignUp() {
         let email = SignUpVC.emailAddress
         let name = SignUpVC.userName
+        
+        guard let flag = SignUpVC.country.flag,
+                let country = SignUpVC.country.country
+        else { return }
+        
         guard let password = passTextField.text, !password.isEmpty else { return }
         KeychainWrapper.standard.set(password, forKey: "userPassword")
         
@@ -387,6 +392,8 @@ final class PasswordVC: BaseVC {
                     userId: userId,
                     name: name,
                     email: email,
+                    country: country,
+                    flag: flag,
                     points: 1000,
                     level: 1,
                     status: "novice",
@@ -416,6 +423,8 @@ final class PasswordVC: BaseVC {
         userId: String,
         name: String,
         email: String,
+        country: String,
+        flag: String,
         points: Int,
         level: Int,
         status: String,
@@ -430,6 +439,8 @@ final class PasswordVC: BaseVC {
         usersCollection.document(userId).setData([
             "Name": name,
             "Email": email,
+            "Country": country,
+            "Flag": flag,
             "Points": initialPoints,
             "Level": level,
             "Status": status,

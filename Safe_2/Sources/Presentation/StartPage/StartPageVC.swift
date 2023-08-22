@@ -68,6 +68,12 @@ final class StartPageVC: BaseVC {
         return v
     }()
     
+    lazy var flagImageView: UIImageView = {
+        let v = UIImageView()
+                
+        return v
+    }()
+    
     let gameStyleLabel: UILabel = {
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -208,6 +214,7 @@ final class StartPageVC: BaseVC {
             levelLabel,
             nameLabel,
             finiksCountLabel,
+            flagImageView,
             gameStyleLabel,
             GameStyleStackView,
             StartButton
@@ -224,7 +231,6 @@ final class StartPageVC: BaseVC {
     public override func setupAutolayout() {
         
         profileImageView.pin(edges: [.top], to: view, inset: 0, toSafeArea: true)
-        nameLabel.pin(edges: [.top], to: view, inset: 15, toSafeArea: true)
         profileImageView.pin(edges: [.leading], to: view, inset: 25)
         gameStyleLabel.pin(edges: [.leading, .trailing], to: view, inset: 55)
         GameStyleStackView.pin(edges: [.leading, .trailing], to: view, inset: 55)
@@ -232,6 +238,7 @@ final class StartPageVC: BaseVC {
         StartButton.pin(edges: [.bottom], to: view, inset: 25, toSafeArea: true)
         
         profileImageView.set(width: 90, height: 90)
+        flagImageView.set(width: 30, height: 15)
         levelLabel.set(width: 25, height: 25)
         nameLabel.set(height: 20)
         finiksCountLabel.set(height: 20)
@@ -244,10 +251,16 @@ final class StartPageVC: BaseVC {
                 equalTo: profileImageView.trailingAnchor),
             nameLabel.leadingAnchor.constraint(
                 equalTo: profileImageView.trailingAnchor, constant: 20),
+            nameLabel.centerYAnchor.constraint(
+                equalTo: profileImageView.centerYAnchor),
             finiksCountLabel.topAnchor.constraint(
                 equalTo: nameLabel.bottomAnchor, constant: 10),
             finiksCountLabel.leadingAnchor.constraint(
                 equalTo: profileImageView.trailingAnchor, constant: 20),
+            flagImageView.bottomAnchor.constraint(
+                equalTo: nameLabel.topAnchor, constant: -10),
+            flagImageView.leadingAnchor.constraint(
+                equalTo: nameLabel.leadingAnchor),
             gameStyleLabel.bottomAnchor.constraint(
                 equalTo: GameStyleStackView.topAnchor, constant: -30),
             GameStyleStackView.centerYAnchor.constraint(
@@ -266,11 +279,13 @@ final class StartPageVC: BaseVC {
         if let user = userModel,
              let url = user.profilePictureURL,
                let name = user.name,
-                 let points = user.points {
+                 let points = user.points,
+                   let flag = user.flag {
             
             setupProfileImageWith(url: url)
               nameLabel.text = name
                 finiksCountLabel.text = "\(points) Finiks"
+                  flagImageView.image = UIImage(named: flag)
         }
     }
     
@@ -302,10 +317,6 @@ final class StartPageVC: BaseVC {
         gameStyleLabel.text = "Game style"
         makeInactive(buttons: variantButtons)
         StartButton.buttonState = .inactive
-    }
-    
-    private func isStartButtonEnable() {
-        StartButton.isEnabled = gameStyle != nil
     }
     
     private func stateToggle(button: VariantButton) {

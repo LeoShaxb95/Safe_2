@@ -514,7 +514,7 @@ final class GuessOnlyVC: BaseVC {
     //other func-s
     func checkAttempts() {
         attempts -= 1
-        if attempts == 0 {
+        if attempts == 0 && !gameIsOver {
             gameOverWith(result: .lose)
             messageLabel.text = " You have exceeded attempts limit "
         }

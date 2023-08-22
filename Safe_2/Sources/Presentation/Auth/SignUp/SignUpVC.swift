@@ -8,12 +8,14 @@
 import UIKit
 import Combine
 import SwiftKeychainWrapper
+import BottomSheet
 
 final class SignUpVC: BaseVC {
     
     // MARK: - Properties
     
     let SCItems = ["Phone number", "Email"]
+    static var country = CountryModel(flag: "", country: "")
     static var emailAddress: String = ""
     static var userName: String = ""
 
@@ -120,6 +122,33 @@ final class SignUpVC: BaseVC {
 
         return v
     }()
+    
+    lazy var countryStackView: UIStackView = {
+        let v = UIStackView(arrangedSubviews: [
+            countryTextField,
+            createLineView()
+        ])
+        v.axis = .vertical
+        v.distribution = .fill
+        v.alignment = .fill
+        
+        return v
+    }()
+
+    let countryTextField: UITextField = {
+        let v = UITextField()
+        v.isUserInteractionEnabled = true
+        v.isEnabled = true
+        v.autocorrectionType = .no
+        v.keyboardType = .emailAddress
+        v.textColor = .white
+        v.attributedPlaceholder = NSAttributedString(
+            string: "Tap to choose your country",
+            attributes: [NSAttributedString.Key.foregroundColor: AppColors.labelColor]
+        )
+        
+        return v
+    }()
 
     let continueButton: UIButton = {
         let v = UIButton()
@@ -184,6 +213,9 @@ final class SignUpVC: BaseVC {
         
         view.backgroundColor = AppColors.signViewBackground
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(countryTextFieldTapped))
+        countryTextField.addGestureRecognizer(tapGesture)
+        
         setupSubviews()
         bind()
     }
@@ -233,6 +265,7 @@ final class SignUpVC: BaseVC {
             linesStackView,
             emailOrPhoneStackView,
             userNameStackView,
+            countryStackView,
             continueButton,
             signInStackView
         ])
@@ -245,6 +278,7 @@ final class SignUpVC: BaseVC {
         linesStackView.pin(edges: [.leading, .trailing], to: view, inset: 15)
         emailOrPhoneTextField.pin(edges: [.leading, .trailing], to: view, inset: 60)
         userNameStackView.pin(edges: [.leading, .trailing], to: view, inset: 60)
+        countryStackView.pin(edges: [.leading, .trailing], to: view, inset: 60)
         continueButton.pin(edges: [.leading, .trailing], to: view, inset: 60)
         signInStackView.pin(edges: [.leading, .trailing], to: view, inset: 75)
 
@@ -255,20 +289,22 @@ final class SignUpVC: BaseVC {
         continueButton.set(height: 50)
         emailOrPhoneTextField.set(height: 44)
         userNameTextField.set(height: 44)
+        countryStackView.set(height: 44)
 
         NSLayoutConstraint.activate([
             linesStackView.topAnchor.constraint(
                 equalTo: signInTypesSegmentedControl.bottomAnchor, constant: 5),
             emailOrPhoneStackView.topAnchor.constraint(
-                equalTo: linesStackView.bottomAnchor, constant: 100),
+                equalTo: linesStackView.bottomAnchor, constant: 70),
             userNameStackView.topAnchor.constraint(
                 equalTo: emailOrPhoneStackView.bottomAnchor, constant: 20),
+            countryStackView.topAnchor.constraint(
+                equalTo: userNameStackView.bottomAnchor, constant: 20),
             continueButton.topAnchor.constraint(
-                equalTo: userNameStackView.bottomAnchor, constant: 60),
+                equalTo: countryStackView.bottomAnchor, constant: 60),
             signInStackView.topAnchor.constraint(
                 equalTo: continueButton.bottomAnchor, constant: 10),
         ])
-        
     }
     
     private func setupTitle() {
@@ -284,14 +320,21 @@ final class SignUpVC: BaseVC {
         let view = UIView()
         view.backgroundColor = AppColors.textFieldBackground
         view.set(height: 1.5)
-
+        
         return view
     }
     
     // MARK: Callbacks
-
-    @objc func didTapForgotButton() {
-        //Gloxd moranayir
+    
+    @objc func countryTextFieldTapped() {
+        view.endEditing(true)
+        let presenter = CountryBottomSheetPresenter()
+        let vc = CountryBottomSheetVC(presenter: presenter)
+        vc.delegate = self
+        vc.preferredContentSize = CGSize(width: 300, height: 700)
+        let backgroundColor: UIColor = traitCollection.userInterfaceStyle == .light ? .black : .gray
+        
+        presentBottomSheet(viewController: vc, configuration: .init(cornerRadius: 30, pullBarConfiguration: .hidden, shadowConfiguration: .init(backgroundColor: backgroundColor.withAlphaComponent(0.65))))
     }
 
     @objc func didChangeSelectedSegment(_ sender: UISegmentedControl) {
@@ -310,5 +353,11 @@ final class SignUpVC: BaseVC {
                break
         }
     }
-  
+}
+
+extension SignUpVC: CountryBottomSheetDelegate {
+    func didSelectCountry(country: CountryModel) {
+        SignUpVC.country = country
+        countryTextField.text = country.country
+    }
 }
